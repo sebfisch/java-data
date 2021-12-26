@@ -1,0 +1,11 @@
+baseURL = "http://sebfisch.github.io/java-data"
+languageCode = "en-us"
+title = "Java Data"
+publishDir = "docs"
+theme = "book"
+enableGitInfo = true
+disableKinds = ['taxonomy', 'taxonomyTerm']
+
+[params]
+  BookSearch = false
+  BookComments = false
