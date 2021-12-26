@@ -2,7 +2,7 @@ baseURL = "http://sebfisch.github.io/java-data"
 languageCode = "en-us"
 title = "Java Data"
 publishDir = "docs"
-theme = "book"
+theme = "hugo-book"
 enableGitInfo = true
 disableKinds = ['taxonomy', 'taxonomyTerm']
 
