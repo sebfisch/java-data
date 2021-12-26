@@ -4,6 +4,17 @@ title: "Algebraic Datatypes and Pattern Matching in Java"
 
 # Algebraic Datatypes and Pattern Matching in Java
 
+Over the years, Java has incorporated
+[language features from functional programming](https://sebfisch.github.io/java-fun/)
+that have changed how Java programmers write their code.
+The long-term support (LTS) release of
+[JDK Version 17](https://openjdk.java.net/projects/jdk/17/)
+includes new language features from
+[Project Amber](https://openjdk.java.net/projects/amber/)
+inspired by functional languages that change the way data can be defined and used.
+This tutorial provides an overview and an in-depth exploration of related features
+that have been included since the previous LTS release.
+
 The underlying source code is available online, 
 and this tutorial includes tasks to extend it.
 If you want to follow along, you can use your own Java development environment
