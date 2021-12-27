@@ -1,6 +1,6 @@
 ---
 title: Pattern Matching
-weight: 40
+weight: 24
 ---
 
 # Pattern Matching

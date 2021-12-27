@@ -8,6 +8,11 @@ weight: 90
 Here is a list of links to external resources referenced in the tutorial,
 in order of appearance.
 
+  * [Joe Armstrong](https://en.wikipedia.org/wiki/Joe_Armstrong_(programmer))
+  * [Erlang programming language](https://www.erlang.org/)
+  * [Coders at Work](https://codersatwork.com/)
+  * [Coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming))
+  * [Information Hiding](https://en.wikipedia.org/wiki/Information_hiding)
   * [JDK Version 17](https://openjdk.java.net/projects/jdk/17/)
   * [Project Amber](https://openjdk.java.net/projects/amber/)
   * [Docker](https://docs.docker.com/get-docker/)

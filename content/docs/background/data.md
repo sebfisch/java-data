@@ -1,6 +1,6 @@
 ---
 title: Algebraic Datatypes
-weight: 20
+weight: 22
 ---
 
 # Algebraic Datatypes

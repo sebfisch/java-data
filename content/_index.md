@@ -4,6 +4,37 @@ title: "Algebraic Datatypes and Pattern Matching in Java"
 
 # Algebraic Datatypes and Pattern Matching in Java
 
+> The problem with object-oriented languages is 
+> they’ve got all this implicit environment that they carry around with them. 
+> You wanted a banana but what you got was a gorilla holding the banana
+> and the entire jungle.
+>
+> --- [Joe Armstrong](https://en.wikipedia.org/wiki/Joe_Armstrong_(programmer))
+> (✝︎2019) co-designer of the
+> [Erlang programming language](https://www.erlang.org/)
+> in
+> [Coders at Work](https://codersatwork.com/)
+
+Objects are
+[coupling](https://en.wikipedia.org/wiki/Coupling_(computer_programming))
+data with operations.
+While this can be beneficial for the design of large software systems
+---for example, to implement
+[Information Hiding](https://en.wikipedia.org/wiki/Information_hiding)
+by carefully selecting available operations to manipulate data---
+in practice, it is often beneficial 
+to separate operations from the data they operate on,
+in order to make them more reusable and easier to test.
+
+In functional languages, 
+creating data is separate from using functions
+that can take data as arguments and return data as result.
+Data definitions are describing possibly nested values without any behavior.
+Functions can even be defined in separate modules from the data they operate on.
+In typed functional languages,
+the values functions operate on are usually defined using algebraic datatypes,
+and the functions operating on data are usually defined using pattern matching.
+
 Over the years, Java has incorporated
 [language features from functional programming](https://sebfisch.github.io/java-fun/)
 that have changed how Java programmers write their code.
@@ -11,9 +42,14 @@ The long-term support (LTS) release of
 [JDK Version 17](https://openjdk.java.net/projects/jdk/17/)
 includes new language features from
 [Project Amber](https://openjdk.java.net/projects/amber/)
-inspired by functional languages that change the way data can be defined and used.
-This tutorial provides an overview and an in-depth exploration of related features
-that have been included since the previous LTS release.
+inspired by algebraic datatypes and pattern matching 
+that change the way data can be defined and used in Java.
+This tutorial provides an overview and an in-depth exploration 
+of related features that have been included since the previous LTS release.
+
+Before we look at specific new features in Java 17,
+we discuss the underlying concepts algebraic datatypes and pattern matching
+as a background to understand the motivation behind the new features.
 
 The underlying source code is available online, 
 and this tutorial includes tasks to extend it.
