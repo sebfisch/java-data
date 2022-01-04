@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algebraic Datatypes and Pattern Matching in Java on Java Data</title>
+    <link>http://sebfisch.github.io/java-data/</link>
+    <description>Recent content in Algebraic Datatypes and Pattern Matching in Java on Java Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://sebfisch.github.io/java-data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algebraic Datatypes</title>
+      <link>http://sebfisch.github.io/java-data/docs/background/data/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/background/data/</guid>
+      <description>Algebraic Datatypes #  Algebraic datatypes are a combination of sum types and product types which we discuss next.
+Sum types #  Sum types are used to represent different variants of values. They are also called variant types or tagged union types. A simple example of a sum type would be a type where corresponding values are limited to one of the three base colors: red, green, and blue.</description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching</title>
+      <link>http://sebfisch.github.io/java-data/docs/background/patterns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/background/patterns/</guid>
+      <description>Pattern Matching #  Pattern matching provides a way to inspect algebraic datatypes and access the components of their variants.
+Matching for enum types #  The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
+asHexString(RED) -&amp;gt; &amp;quot;#ff0000&amp;quot; asHexString(GREEN) -&amp;gt; &amp;quot;#00ff00&amp;quot; asHexString(BLUE) -&amp;gt; &amp;quot;#0000ff&amp;quot; BaseColor was defined as an enum type, so we can use a switch statement to implement an asHexString method.</description>
+    </item>
+    
+    <item>
+      <title>Sealed Classes</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/sealed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/sealed/</guid>
+      <description>Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all.</description>
+    </item>
+    
+    <item>
+      <title>Records</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/records/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/records/</guid>
+      <description>Records #  Records are motivated by the desire to implement product types more consisely than is otherwise possible. They are equivalent to final classes without an extends clause (their direct super-class is always Record) and where all fields are private and final. Record definitions automatically provide canonical constructors, field declarations, and corresponding methods for read access. They also provide sensible implementations for the equals, hashCode, and toString methods.
+Another feature introduced together with records are local definitions for records, enums or interfaces, which we discuss below.</description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching for instanceof</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/instanceof/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/instanceof/</guid>
+      <description>Pattern Matching for instanceof #  </description>
+    </item>
+    
+    <item>
+      <title>Switch expressions</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/switch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/switch/</guid>
+      <description>Switch expressions #  </description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching for switch</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/switchpatterns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/switchpatterns/</guid>
+      <description>Pattern Matching for switch #  </description>
+    </item>
+    
+    <item>
+      <title>Record Patterns</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/recordpatterns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/recordpatterns/</guid>
+      <description>Record Patterns #  </description>
+    </item>
+    
+  </channel>
+</rss>

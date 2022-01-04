@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java Features on Java Data</title>
+    <link>http://sebfisch.github.io/java-data/docs/features/</link>
+    <description>Recent content in Java Features on Java Data</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://sebfisch.github.io/java-data/docs/features/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sealed Classes</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/sealed/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/sealed/</guid>
+      <description>Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all.</description>
+    </item>
+    
+    <item>
+      <title>Records</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/records/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/records/</guid>
+      <description>Records #  Records are motivated by the desire to implement product types more consisely than is otherwise possible. They are equivalent to final classes without an extends clause (their direct super-class is always Record) and where all fields are private and final. Record definitions automatically provide canonical constructors, field declarations, and corresponding methods for read access. They also provide sensible implementations for the equals, hashCode, and toString methods.
+Another feature introduced together with records are local definitions for records, enums or interfaces, which we discuss below.</description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching for instanceof</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/instanceof/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/instanceof/</guid>
+      <description>Pattern Matching for instanceof #  </description>
+    </item>
+    
+    <item>
+      <title>Switch expressions</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/switch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/switch/</guid>
+      <description>Switch expressions #  </description>
+    </item>
+    
+    <item>
+      <title>Pattern Matching for switch</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/switchpatterns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/switchpatterns/</guid>
+      <description>Pattern Matching for switch #  </description>
+    </item>
+    
+    <item>
+      <title>Record Patterns</title>
+      <link>http://sebfisch.github.io/java-data/docs/features/recordpatterns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://sebfisch.github.io/java-data/docs/features/recordpatterns/</guid>
+      <description>Record Patterns #  </description>
+    </item>
+    
+  </channel>
+</rss>

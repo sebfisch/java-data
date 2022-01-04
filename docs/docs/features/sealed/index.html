@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Sealed Classes" />
+<meta property="og:description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/sealed/" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2022-01-05T00:51:45+01:00" />
+
+<title>Sealed Classes | Java Data</title>
+<link rel="manifest" href="/java-data/manifest.json">
+<link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/java-data/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css" integrity="sha256-RhgbyTN1upMgJudTs3xA5v&#43;LsWqe93DHi8xmPkV3sbo=" crossorigin="anonymous"><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/java-data/"><span>Java Data</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/" class="">Background</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/data/" class="">Algebraic Datatypes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/patterns/" class="">Pattern Matching</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">Java Features</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/sealed/" class=" active">Sealed Classes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/records/" class="">Records</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/instanceof/" class="">Pattern Matching for instanceof</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/switch/" class="">Switch expressions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/switchpatterns/" class="">Pattern Matching for switch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/recordpatterns/" class="">Record Patterns</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/links/" class="">External Links</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/java-data/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Sealed Classes</strong>
+
+  <label for="toc-control">
+    
+    <img src="/java-data/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#optional-values">Optional values</a></li>
+    <li><a href="#restrictions">Restrictions</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="sealed-classes">
+  Sealed Classes
+  <a class="anchor" href="#sealed-classes">#</a>
+</h1>
+<p><a href="https://openjdk.java.net/jeps/409">Sealed Classes</a>
+are motivated by the desire to define sum types
+where the class hierarchy is fixed
+and not intended to be extended by others.
+Using the new keywords <code>sealed</code> and <code>permits</code>
+classes (and interfaces) can restrict
+which other classes can extend (or implement) them.</p>
+<p>Sealed classes provide a middle ground between normal classes,
+which can be extended without restrictions,
+and final classes, which cannot be extended at all.
+They provide a basis for ehaustiveness checking during
+<a href="../switchpatterns">pattern matching for <code>switch</code></a>
+which helps to avoid unreachable branches
+and to ensure that all possible branches are defined.</p>
+<p>Sealed classes also help the compiler to reject certain checks using <code>instanceof</code>
+if the restrictions implied by the <code>sealed</code> or <code>final</code> keywords
+make the check impossible to succeed.</p>
+<h2 id="optional-values">
+  Optional values
+  <a class="anchor" href="#optional-values">#</a>
+</h2>
+<p>Here is an adjusted definition for optional values using a sealed interface.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> sealed <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SealedOptional</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
+    permits SealedOptional<span style="color:#f92672">.</span><span style="color:#a6e22e">Empty</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;,</span> SealedOptional<span style="color:#f92672">.</span><span style="color:#a6e22e">Present</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Empty</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> SealedOptional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{}</span>
+
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Present</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> SealedOptional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> T value<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Present</span><span style="color:#f92672">(</span>T value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> value<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">value</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> value<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>This definition resembles the previous one with the following differences:</p>
+<ul>
+<li>The <code>sealed</code> keyword marks the interface as sealed.</li>
+<li>The <code>permits</code> keyword starts a list of allowed sub-classes.</li>
+<li>The nested classes are declared as <code>final</code> to prevent further sub-classes.</li>
+</ul>
+<h2 id="restrictions">
+  Restrictions
+  <a class="anchor" href="#restrictions">#</a>
+</h2>
+<p>It is an error to define a class extending a sealed class
+(or implementing a sealed interface)
+if the sub-class is not listed in the <code>permits</code> clause.
+Permitted sub-classes must be defined in the same module
+(or, if declared in an unnamed module, in the same package)
+as their super-class.</p>
+<p>In the definition above, where all allowed sub-classes are nested classes,
+the <code>permits</code> clause is optional and would be inferred if it is omitted.
+In other cases, without nested sub-classes,
+a missing (or empty) <code>permits</code> clause is not allowed.
+It would also be an error to list a class in the <code>permits</code> clause
+that is not a direct descendent in the class hierarchy.</p>
+<p>All classes extending sealed classes (or implementing sealed interfaces)
+have to be declared either <code>final</code>, <code>sealed</code>, or <code>non-sealed</code>
+to explicity control further sub-classes.
+When the new keyword <code>non-sealed</code> is used,
+the sub-class could be extended by arbitrary other classes
+(just like normal classes)
+breaking the seal of the super-class.</p>
+<p>We now look at <a href="../records">Records</a>
+which help to further simplify our definition of optional values.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
+  >&copy; 2021</a>
+by
+<a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#optional-values">Optional values</a></li>
+    <li><a href="#restrictions">Restrictions</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

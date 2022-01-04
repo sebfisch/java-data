@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Pattern Matching for instanceof #  ">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Pattern Matching for instanceof" />
+<meta property="og:description" content="Pattern Matching for instanceof #  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/instanceof/" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2022-01-05T00:51:45+01:00" />
+
+<title>Pattern Matching for instanceof | Java Data</title>
+<link rel="manifest" href="/java-data/manifest.json">
+<link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/java-data/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css" integrity="sha256-RhgbyTN1upMgJudTs3xA5v&#43;LsWqe93DHi8xmPkV3sbo=" crossorigin="anonymous"><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/java-data/"><span>Java Data</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/" class="">Background</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/data/" class="">Algebraic Datatypes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/patterns/" class="">Pattern Matching</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">Java Features</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/sealed/" class="">Sealed Classes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/records/" class="">Records</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/instanceof/" class=" active">Pattern Matching for instanceof</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/switch/" class="">Switch expressions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/switchpatterns/" class="">Pattern Matching for switch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/recordpatterns/" class="">Record Patterns</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/links/" class="">External Links</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/java-data/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Pattern Matching for instanceof</strong>
+
+  <label for="toc-control">
+    
+    <img src="/java-data/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="pattern-matching-for-instanceof">
+  Pattern Matching for <code>instanceof</code>
+  <a class="anchor" href="#pattern-matching-for-instanceof">#</a>
+</h1>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
+  >&copy; 2021</a>
+by
+<a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

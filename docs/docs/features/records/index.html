@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Records #  Records are motivated by the desire to implement product types more consisely than is otherwise possible. They are equivalent to final classes without an extends clause (their direct super-class is always Record) and where all fields are private and final. Record definitions automatically provide canonical constructors, field declarations, and corresponding methods for read access. They also provide sensible implementations for the equals, hashCode, and toString methods.
+Another feature introduced together with records are local definitions for records, enums or interfaces, which we discuss below.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Records" />
+<meta property="og:description" content="Records #  Records are motivated by the desire to implement product types more consisely than is otherwise possible. They are equivalent to final classes without an extends clause (their direct super-class is always Record) and where all fields are private and final. Record definitions automatically provide canonical constructors, field declarations, and corresponding methods for read access. They also provide sensible implementations for the equals, hashCode, and toString methods.
+Another feature introduced together with records are local definitions for records, enums or interfaces, which we discuss below." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/records/" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2022-01-05T00:51:45+01:00" />
+
+<title>Records | Java Data</title>
+<link rel="manifest" href="/java-data/manifest.json">
+<link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/java-data/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css" integrity="sha256-RhgbyTN1upMgJudTs3xA5v&#43;LsWqe93DHi8xmPkV3sbo=" crossorigin="anonymous"><!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/java-data/"><span>Java Data</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/" class="">Background</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/data/" class="">Algebraic Datatypes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/background/patterns/" class="">Pattern Matching</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">Java Features</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/sealed/" class="">Sealed Classes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/records/" class=" active">Records</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/instanceof/" class="">Pattern Matching for instanceof</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/switch/" class="">Switch expressions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/switchpatterns/" class="">Pattern Matching for switch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/recordpatterns/" class="">Record Patterns</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/links/" class="">External Links</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/java-data/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Records</strong>
+
+  <label for="toc-control">
+    
+    <img src="/java-data/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#rgb-colors">RGB colors</a></li>
+    <li><a href="#optional-values">Optional values</a>
+      <ul>
+        <li><a href="#task-null-check">Task: null check</a></li>
+      </ul>
+    </li>
+    <li><a href="#local-declarations">Local declarations</a></li>
+    <li><a href="#task-recursive-lists">Task: recursive lists</a></li>
+    <li><a href="#task-advent-of-code">Task: advent of code</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="records">
+  Records
+  <a class="anchor" href="#records">#</a>
+</h1>
+<p><a href="https://openjdk.java.net/jeps/395">Records</a>
+are motivated by the desire to implement product types
+more consisely than is otherwise possible.
+They are equivalent to final classes without an extends clause
+(their direct super-class is always <code>Record</code>)
+and where all fields are <code>private</code> and <code>final</code>.
+Record definitions automatically provide canonical constructors,
+field declarations, and corresponding methods for read access.
+They also provide sensible implementations
+for the <code>equals</code>, <code>hashCode</code>, and <code>toString</code> methods.</p>
+<p>Another feature introduced together with records are
+local definitions for records, enums or interfaces,
+which we discuss below.</p>
+<h2 id="rgb-colors">
+  RGB colors
+  <a class="anchor" href="#rgb-colors">#</a>
+</h2>
+<p>The following definition can be used like <code>BasicRGBColor</code>
+(without the <code>saturation</code> method)
+defined previously.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> record <span style="color:#a6e22e">RGBColor</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> red<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> green<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> blue<span style="color:#f92672">)</span> <span style="color:#f92672">{}</span>
+</code></pre></div><p>No constructors, fields and methods for read access are defined explicitly.
+But they are defined implicitly by this declaration.
+as well as <code>equals</code>, <code>hashCode</code> and <code>toString</code> methods,
+which we previously omitted for brevity.</p>
+<p>We could add additional constructors or methods (like <code>saturation</code>)
+or provide alternative implementations for generated constructors or methods.
+For example, we can provide our own definition for the constructor,
+which checks that all provided color values are between zero and one.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> record <span style="color:#a6e22e">RGBColor</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> red<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> green<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> blue<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> RGBColor <span style="color:#f92672">{</span>
+        check<span style="color:#f92672">(</span>red<span style="color:#f92672">);</span>
+        check<span style="color:#f92672">(</span>green<span style="color:#f92672">);</span>
+        check<span style="color:#f92672">(</span>blue<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">check</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> val<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>val <span style="color:#f92672">&lt;</span> 0 <span style="color:#f92672">||</span> 1 <span style="color:#f92672">&lt;</span> val<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;invalid color value &#34;</span> <span style="color:#f92672">+</span> val<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Note that the signature of the defined constructor does not declare parameters,
+and its body does not contain assignments to the fields of the record.
+The parameter list is implicitly copied from the record declaration,
+and assignments of the parameters to the record fields are implicitly included
+at the end of the constructor body.
+Note that the parameters are not declared final,
+so we could change their values, for example, to normalize them
+before they are assigned to the fields.</p>
+<h2 id="optional-values">
+  Optional values
+  <a class="anchor" href="#optional-values">#</a>
+</h2>
+<p>The following definition simplifies our previous definitions for optional values
+using records for their different variants.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> sealed <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Optional</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+    record Empty<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;()</span> <span style="color:#66d9ef">implements</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{}</span>
+    record Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;(</span>T value<span style="color:#f92672">)</span> <span style="color:#66d9ef">implements</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{}</span>
+
+    <span style="color:#75715e">// default method `map` implemented as before
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>We omit the <code>permits</code> clause, which is inferred from the nested records.
+Note that records are implicitly final,
+so we do not need to explicitly declare them as such,
+although they implement a sealed interface.
+They are implicitly static if they are nested.
+Also note that,
+while records are not allowed to declare an explicit super-class,
+they can implement interfaces and inherit their default methods.</p>
+<h3 id="task-null-check">
+  Task: null check
+  <a class="anchor" href="#task-null-check">#</a>
+</h3>
+<p>Provide an explicit constructor for <code>Optional.Present</code>
+that rejects passed <code>null</code> values
+by throwing an <code>IllegalArgumentException</code>.
+Add an additional test to <code>OptionalTests</code>
+that checks that the null check works as intended.</p>
+<h2 id="local-declarations">
+  Local declarations
+  <a class="anchor" href="#local-declarations">#</a>
+</h2>
+<p>Records are often useful as containers for intermediate results.
+We could define records as nested classes and use them like other nested classes.
+But records (as well as enums and interfaces) can now also be defined locally
+inside a method.
+When we define records like this,
+their definition is closer to where they are used,
+and it is not visible outside the method that contains it,
+so it does not clutter the namespace.</p>
+<p>Here is a static method inside <code>RGBColor</code> that demonstrates this technique.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Optional<span style="color:#f92672">&lt;</span>RGBColor<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">findBrightest</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>RGBColor<span style="color:#f92672">&gt;</span> colors<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        record <span style="color:#a6e22e">AugmentedColor</span><span style="color:#f92672">(</span>RGBColor color<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> brightness<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            AugmentedColor<span style="color:#f92672">(</span>RGBColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">this</span><span style="color:#f92672">(</span>color<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">+</span> color<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">+</span> color<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span><span style="color:#f92672">)</span> <span style="color:#f92672">/</span> 3<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">return</span> colors<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>AugmentedColor<span style="color:#f92672">::</span><span style="color:#66d9ef">new</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>Comparator<span style="color:#f92672">.</span><span style="color:#a6e22e">comparing</span><span style="color:#f92672">(</span>AugmentedColor<span style="color:#f92672">::</span>brightness<span style="color:#f92672">))</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>AugmentedColor<span style="color:#f92672">::</span>color<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>The method <code>findBrightest</code> returns one of the brightest colors
+in the list given as argument.
+The result is returned as an optional value
+using the
+<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html">Optional</a>
+class predefined in Java,
+not using our own implementation of optional values.</p>
+<p>The record <code>AugmentedColor</code> is defined locally inside <code>findBrightest</code>.
+It has an additional constructor that only takes a color as argument
+and computes the second argument of the canonical constructor.
+As a result,
+the brightness of an augmented color does not have to be recomputed
+if it is accessed repeatedly.
+The constructor does not replace the canonical constructor,
+so it has an explicit list of parameters.</p>
+<p>The result of <code>findBrightest</code> is computed using a
+<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html">Stream</a>
+pipeline.
+First, the colors are augmented using <code>Stream.map</code>
+and the construtor of the local record.
+Then, the brightest augmented color is computed using <code>Stream.max</code>
+and the <code>brightness</code> method of the local record
+which provides read access to the pre-computed brightness.
+Finally, the brightest is discarded using <code>Optional.map</code>
+and the <code>color</code> method of the local record.</p>
+<h2 id="task-recursive-lists">
+  Task: recursive lists
+  <a class="anchor" href="#task-recursive-lists">#</a>
+</h2>
+<p>Define a sealed interface <code>RecursiveList&lt;T&gt;</code>
+with nested records <code>Empty&lt;T&gt;</code> and <code>Populated&lt;T&gt;</code> for their variants.
+Define a test class <code>RecursiveListTests</code>
+which checks that the list implementation works as intended.</p>
+<h2 id="task-advent-of-code">
+  Task: advent of code
+  <a class="anchor" href="#task-advent-of-code">#</a>
+</h2>
+<p><a href="https://adventofcode.com/2021/day/2">Advent of Code 2021, Day 2</a>
+poses a task where the position of a submarine is adjusted
+based on a list of commands operating it.</p>
+<p>Solve the task
+by applying what you have learned about algebraic datatypes so far.
+Please refrain from using language features for pattern matching
+discussed later in this tutorial.
+There will be another task to make use of those additional features.</p>
+<p>You are encouraged to solve the task using your own design.
+If you want guidance,
+you can solve this task by defining an algebraic datatype <code>Command</code>
+(as a sealed interface with nested records for the different variants)
+and a mutable class <code>Position</code> with a method <code>moveBy(Command)</code>
+that adjusts the fields of a position according to the given command.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
+  >&copy; 2021</a>
+by
+<a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
+
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#rgb-colors">RGB colors</a></li>
+    <li><a href="#optional-values">Optional values</a>
+      <ul>
+        <li><a href="#task-null-check">Task: null check</a></li>
+      </ul>
+    </li>
+    <li><a href="#local-declarations">Local declarations</a></li>
+    <li><a href="#task-recursive-lists">Task: recursive lists</a></li>
+    <li><a href="#task-advent-of-code">Task: advent of code</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
