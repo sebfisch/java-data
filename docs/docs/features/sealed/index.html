@@ -353,15 +353,17 @@ make the check impossible to succeed.</p>
 <p>It is an error to define a class extending a sealed class
 (or implementing a sealed interface)
 if the sub-class is not listed in the <code>permits</code> clause.
+It is also an error
+if a class mentioned in the <code>permits</code> clause of a sealed class (or interface)
+does not extend that class (or implement that interface) directly.
+IDEs might be able to resolve these errors automatically.
 Permitted sub-classes must be defined in the same module
 (or, if declared in an unnamed module, in the same package)
 as their super-class.</p>
 <p>In the definition above, where all allowed sub-classes are nested classes,
 the <code>permits</code> clause is optional and would be inferred if it is omitted.
 In other cases, without nested sub-classes,
-a missing (or empty) <code>permits</code> clause is not allowed.
-It would also be an error to list a class in the <code>permits</code> clause
-that is not a direct descendent in the class hierarchy.</p>
+a missing (or empty) <code>permits</code> clause is not allowed.</p>
 <p>All classes extending sealed classes (or implementing sealed interfaces)
 have to be declared either <code>final</code>, <code>sealed</code>, or <code>non-sealed</code>
 to explicity control further sub-classes.
@@ -392,7 +394,7 @@ which help to further simplify our definition of optional values.</p>
 
  
         <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
-  >&copy; 2021</a>
+  >&copy; 2022</a>
 by
 <a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
 

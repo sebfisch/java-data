@@ -14,7 +14,7 @@ Traditionally, switch statements can only inspect
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switchpatterns/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-05T00:51:45+01:00" />
+<meta property="article:modified_time" content="2022-01-05T21:37:00+01:00" />
 
 <title>Pattern Matching for switch | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -287,7 +287,9 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#type-patterns">Type patterns</a></li>
     <li><a href="#guarded-patterns">Guarded patterns</a></li>
+    <li><a href="#task-5-refactor-recursive-lists">Task 5: refactor recursive lists</a></li>
     <li><a href="#null-patterns"><code>null</code> patterns</a></li>
+    <li><a href="#task-6-refactor-aoc-solution">Task 6: refactor AoC solution</a></li>
   </ul>
 </nav>
 
@@ -393,6 +395,13 @@ not flagged by the compiler.</p>
 <p>The are additional subtleties involving flow scoping and fall-through behaviour.
 Interested readers are referred to the description of the language feature
 linked at the top of this page for details.</p>
+<h2 id="task-5-refactor-recursive-lists">
+  Task 5: refactor recursive lists
+  <a class="anchor" href="#task-5-refactor-recursive-lists">#</a>
+</h2>
+<p>Refactor your implementations of the <code>length</code>, <code>map</code>, and <code>filter</code> functions
+for recurslive lists to use pattern matching in <code>switch</code> expressions.
+Make sure that your tests still pass after your refactoring.</p>
 <h2 id="null-patterns">
   <code>null</code> patterns
   <a class="anchor" href="#null-patterns">#</a>
@@ -440,9 +449,18 @@ like with the previous definition using an explicit <code>null</code> pattern.</
 the final type pattern does match <code>null</code>.
 This is because total type patterns
 (which match the type of the inspected value)
-always match <code>null</code>.
+should always match and, therefore, also match <code>null</code>.
 Note that the type pattern in the guarded patterns do not match <code>null</code>.
-If they did, we would still get an exception when evaluating the condition.</p>
+If they did, we would get an exception when evaluating the condition.</p>
+<h2 id="task-6-refactor-aoc-solution">
+  Task 6: refactor AoC solution
+  <a class="anchor" href="#task-6-refactor-aoc-solution">#</a>
+</h2>
+<p>Refactor your solution the the
+<a href="../records/#task-3-solve-advent-of-code-task">Advent of Code task</a>
+to use pattern matching for <code>instanceof</code> or <code>switch</code> expressions.
+Check your IDE for code cleanup operations related to the new Java features,
+to see if it can help you with this task.</p>
 </article>
  
       
@@ -464,7 +482,7 @@ If they did, we would still get an exception when evaluating the condition.</p>
 
  
         <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
-  >&copy; 2021</a>
+  >&copy; 2022</a>
 by
 <a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
 
@@ -486,7 +504,9 @@ by
   <ul>
     <li><a href="#type-patterns">Type patterns</a></li>
     <li><a href="#guarded-patterns">Guarded patterns</a></li>
+    <li><a href="#task-5-refactor-recursive-lists">Task 5: refactor recursive lists</a></li>
     <li><a href="#null-patterns"><code>null</code> patterns</a></li>
+    <li><a href="#task-6-refactor-aoc-solution">Task 6: refactor AoC solution</a></li>
   </ul>
 </nav>
 

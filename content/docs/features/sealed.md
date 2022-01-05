@@ -59,6 +59,10 @@ This definition resembles the previous one with the following differences:
 It is an error to define a class extending a sealed class
 (or implementing a sealed interface)
 if the sub-class is not listed in the `permits` clause.
+It is also an error 
+if a class mentioned in the `permits` clause of a sealed class (or interface)
+does not extend that class (or implement that interface) directly.
+IDEs might be able to resolve these errors automatically.
 Permitted sub-classes must be defined in the same module
 (or, if declared in an unnamed module, in the same package)
 as their super-class.
@@ -67,8 +71,6 @@ In the definition above, where all allowed sub-classes are nested classes,
 the `permits` clause is optional and would be inferred if it is omitted.
 In other cases, without nested sub-classes, 
 a missing (or empty) `permits` clause is not allowed.
-It would also be an error to list a class in the `permits` clause
-that is not a direct descendent in the class hierarchy.
 
 All classes extending sealed classes (or implementing sealed interfaces)
 have to be declared either `final`, `sealed`, or `non-sealed`

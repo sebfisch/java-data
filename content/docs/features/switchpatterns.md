@@ -105,6 +105,12 @@ The are additional subtleties involving flow scoping and fall-through behaviour.
 Interested readers are referred to the description of the language feature
 linked at the top of this page for details.
 
+## Task 5: refactor recursive lists
+
+Refactor your implementations of the `length`, `map`, and `filter` functions
+for recurslive lists to use pattern matching in `switch` expressions.
+Make sure that your tests still pass after your refactoring.
+
 ## `null` patterns
 
 Traditional `switch` constructs throw a `NullPointerException`
@@ -164,6 +170,14 @@ While type patterns do not always match the `null` value, in this case,
 the final type pattern does match `null`.
 This is because total type patterns
 (which match the type of the inspected value)
-always match `null`.
+should always match and, therefore, also match `null`.
 Note that the type pattern in the guarded patterns do not match `null`.
-If they did, we would still get an exception when evaluating the condition.
+If they did, we would get an exception when evaluating the condition.
+
+## Task 6: refactor AoC solution
+
+Refactor your solution the the
+[Advent of Code task](../records/#task-3-solve-advent-of-code-task)
+to use pattern matching for `instanceof` or `switch` expressions.
+Check your IDE for code cleanup operations related to the new Java features,
+to see if it can help you with this task.
