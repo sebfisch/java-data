@@ -77,7 +77,7 @@ when new enum values are added.
 
 ## `yield` statement
 
-The new `yield` statements can be used to write `switch` expressions
+The new `yield` statement can be used to write `switch` expressions
 with blocks in their branches.
 Traditional `case` labels are always followed by a block,
 so `yield` is necessary to define a `switch` expression 
@@ -103,7 +103,7 @@ In `switch` expressions with arrow labels, we can also use blocks,
 for example, for intermediate computations,
 but they have to be enclosed in curly braces.
 The following version of `describe` uses `yield` in a block
-for a `case` branch with an error label.
+for a `case` branch with an arrow label.
 
 ```java
     public static String describe(BaseColor color) {
