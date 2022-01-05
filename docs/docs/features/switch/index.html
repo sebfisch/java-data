@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Switch expressions #  ">
+<meta name="description" content="Switch Expressions #  Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
+Switch expressions are introduced together with arrow labels, which is an independent feature for alternativ control flow. Unlike the traditional fall-through behavior, switch constructs with arrow labels execute only one of their cases.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Switch expressions" />
-<meta property="og:description" content="Switch expressions #  " />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Switch Expressions" />
+<meta property="og:description" content="Switch Expressions #  Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
+Switch expressions are introduced together with arrow labels, which is an independent feature for alternativ control flow. Unlike the traditional fall-through behavior, switch constructs with arrow labels execute only one of their cases." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switch/" /><meta property="article:section" content="docs" />
 
 <meta property="article:modified_time" content="2022-01-05T00:51:45+01:00" />
 
-<title>Switch expressions | Java Data</title>
+<title>Switch Expressions | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
 <link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/java-data/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css" integrity="sha256-RhgbyTN1upMgJudTs3xA5v&#43;LsWqe93DHi8xmPkV3sbo=" crossorigin="anonymous"><!--
@@ -156,7 +158,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="http://sebfisch.github.io/java-data/docs/features/switch/" class=" active">Switch expressions</a>
+    <a href="http://sebfisch.github.io/java-data/docs/features/switch/" class=" active">Switch Expressions</a>
   
 
         </li>
@@ -265,7 +267,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/java-data/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Switch expressions</strong>
+  <strong>Switch Expressions</strong>
 
   <label for="toc-control">
     
@@ -279,7 +281,12 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#arrow-labels">Arrow labels</a></li>
+    <li><a href="#yield-statement"><code>yield</code> statement</a></li>
+  </ul>
+</nav>
 
 
 
@@ -291,9 +298,110 @@ https://github.com/alex-shpak/hugo-book
       
       
   <article class="markdown"><h1 id="switch-expressions">
-  Switch expressions
+  Switch Expressions
   <a class="anchor" href="#switch-expressions">#</a>
 </h1>
+<p><a href="https://openjdk.java.net/jeps/361">Switch Expressions</a>
+expand the ways <code>switch</code> can be used in Java.
+It is now possible to use the <code>switch</code> construct as an expression
+(that has a value)
+instead of using it as a statement (that has an effect.)</p>
+<p>Switch expressions are introduced together with arrow labels,
+which is an independent feature for alternativ control flow.
+Unlike the traditional fall-through behavior,
+<code>switch</code> constructs with arrow labels execute only one of their cases.</p>
+<p>Combining these two novelties, there are now four kinds of <code>switch</code> constructs:</p>
+<ul>
+<li><code>switch</code> statements with fall-through behavior (the traditional kind)</li>
+<li><code>switch</code> statements without fall-through behavior</li>
+<li><code>switch</code> expressions with fall-through behavior</li>
+<li><code>switch</code> expressions without fall-through behavior</li>
+</ul>
+<p>Switch expressions must be exhaustive, and for enum types
+the compiler checks that they are
+when no default clause is given.</p>
+<h2 id="arrow-labels">
+  Arrow labels
+  <a class="anchor" href="#arrow-labels">#</a>
+</h2>
+<p>We can rewrite the <code>BaseColor.asHexString</code> method from a
+<a href="../../background/patterns/#matching-for-enum-types">previous section</a>
+using a <code>switch</code> expression with arrow labels.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">asHexString</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RED <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#ff0000&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#00ff00&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#0000ff&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Unlike the previous version, this definition does not need a default case,
+because the compiler detects that all possible cases are handled.
+While adding an unreachable default case would still be possible,
+it is not advisable,
+because the compiler would not warn us
+when new enum values are added without adjusting the definition of <code>asHexString</code>.</p>
+<p>Arrow labels can also be used with <code>switch</code> statements,
+rather than expressions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RED <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hot&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">,</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;cold&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unreachable&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>The second case lists two enum values
+because arrow labels do not provide fall-through behavior.
+Unlike in <code>switch</code> expressions,
+we have to include a default case in <code>switch</code> statements
+also when using arrow labels,
+even if it is unreachable.
+As a result, the compiler cannot warn us about missing cases,
+when new enum values are added.</p>
+<h2 id="yield-statement">
+  <code>yield</code> statement
+  <a class="anchor" href="#yield-statement">#</a>
+</h2>
+<p>The new <code>yield</code> statements can be used to write <code>switch</code> expressions
+with blocks in their branches.
+Traditional <code>case</code> labels are always followed by a block,
+so <code>yield</code> is necessary to define a <code>switch</code> expression
+with fall-through behavior.
+Here is an alternative definition of <code>describe</code>
+using fall-through behavior and <code>yield</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">:</span>
+                yield <span style="color:#e6db74">&#34;hot&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">case</span> BLUE<span style="color:#f92672">:</span>
+                yield <span style="color:#e6db74">&#34;cold&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>We do not need a default case in an exhaustive <code>switch</code> expression,
+even if it uses traditional <code>case</code> labels.
+In <code>switch</code> expressions with arrow labels, we can also use blocks,
+for example, for intermediate computations,
+but they have to be enclosed in curly braces.
+The following version of <code>describe</code> uses <code>yield</code> in a block
+for a <code>case</code> branch with an error label.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RED <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;hot&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">,</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">final</span> String cold <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;o&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;l&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">;</span>
+                yield cold<span style="color:#f92672">;</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>The
+<a href="https://github.com/sebfisch/java-data-code/blob/latest/src/main/java/sebfisch/colors/BaseColor.java">source code</a>
+for <code>BaseColor</code> contains even more variants of the <code>describe</code> function
+including the canonical one using a <code>switch</code> expression with arrow labels
+and no <code>yield</code>.</p>
 </article>
  
       
@@ -333,7 +441,12 @@ by
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#arrow-labels">Arrow labels</a></li>
+    <li><a href="#yield-statement"><code>yield</code> statement</a></li>
+  </ul>
+</nav>
 
 
  

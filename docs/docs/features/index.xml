@@ -38,12 +38,13 @@ default &amp;lt;U&amp;gt; Optional&amp;lt;U&amp;gt; map(Function&amp;lt;T, U&amp
     </item>
     
     <item>
-      <title>Switch expressions</title>
+      <title>Switch Expressions</title>
       <link>http://sebfisch.github.io/java-data/docs/features/switch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/switch/</guid>
-      <description>Switch expressions #  </description>
+      <description>Switch Expressions #  Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
+Switch expressions are introduced together with arrow labels, which is an independent feature for alternativ control flow. Unlike the traditional fall-through behavior, switch constructs with arrow labels execute only one of their cases.</description>
     </item>
     
     <item>
