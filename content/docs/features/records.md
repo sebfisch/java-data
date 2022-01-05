@@ -149,7 +149,7 @@ and the construtor of the local record.
 Then, the brightest augmented color is computed using `Stream.max`
 and the `brightness` method of the local record
 which provides read access to the pre-computed brightness.
-Finally, the brightest is discarded using `Optional.map`
+Finally, the brightness is discarded using `Optional.map`
 and the `color` method of the local record.
 
 ## Task: recursive lists
