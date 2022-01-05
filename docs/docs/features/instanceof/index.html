@@ -357,9 +357,19 @@ when the first part of the condition is <code>true</code>.</p>
   <a class="anchor" href="#task-expanding-recursive-lists">#</a>
 </h2>
 <p>Implement <code>length</code>, <code>map</code>, and <code>filter</code> functions
-as a default methods of the sealed interface <code>RecursiveList</code>
-defined in a <a href="../records/#task-recursive-lists">previous task</a>.
-Use patterns in <code>instanceof</code> checks where possible.
+as default methods of the sealed interface <code>RecursiveList</code>
+defined in a <a href="../records/#task-recursive-lists">previous task</a>.</p>
+<p>Here are pseudo-code descriptions for those functions.</p>
+<pre tabindex="0"><code>Empty().length() -&gt; 0
+Populated(_,tail).length() -&gt; 1 + tail.length()
+
+Empty().map(fun) -&gt; Empty()
+Populated(head,tail).map(fun) -&gt; Populated(fun.apply(head), tail.map(fun))
+
+Empty().filter(pred) -&gt; Empty()
+Populated(h,t).filter(p) -&gt; Populated(h,t.filter(p)) if p.test(h)
+Populated(h,t).filter(p) -&gt; t.filter(p)
+</code></pre><p>Use patterns in <code>instanceof</code> checks where possible.
 Add tests to <code>RecursiveListTests</code> that check that the implemented functions
 work as intended.</p>
 </article>

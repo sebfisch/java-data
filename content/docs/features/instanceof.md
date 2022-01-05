@@ -92,8 +92,23 @@ when the first part of the condition is `true`.
 ## Task: expanding recursive lists
 
 Implement `length`, `map`, and `filter` functions
-as a default methods of the sealed interface `RecursiveList`
+as default methods of the sealed interface `RecursiveList`
 defined in a [previous task](../records/#task-recursive-lists).
+
+Here are pseudo-code descriptions for those functions.
+
+```
+Empty().length() -> 0
+Populated(_,tail).length() -> 1 + tail.length()
+
+Empty().map(fun) -> Empty()
+Populated(head,tail).map(fun) -> Populated(fun.apply(head), tail.map(fun))
+
+Empty().filter(pred) -> Empty()
+Populated(h,t).filter(p) -> Populated(h,t.filter(p)) if p.test(h)
+Populated(h,t).filter(p) -> t.filter(p)
+```
+
 Use patterns in `instanceof` checks where possible.
 Add tests to `RecursiveListTests` that check that the implemented functions
 work as intended.
