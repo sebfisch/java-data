@@ -27,4 +27,5 @@ in order of appearance.
   * [Records](https://openjdk.java.net/jeps/395)
   * [Stream](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)
   * [Advent of Code 2021, Day 2](https://adventofcode.com/2021/day/2)
-
+  * [Pattern Matching for `instanceof`](https://openjdk.java.net/jeps/394)
+  * [Predicate](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html)
