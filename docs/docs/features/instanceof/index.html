@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Pattern Matching for instanceof #  ">
+<meta name="description" content="Pattern Matching for instanceof #  Pattern Matching for instanceof helps to avoid type casts when we know that they succeed.
+Matching optional values #  For example, we can use this feature to simplify the definition of map for optional values.
+default &lt;U&gt; Optional&lt;U&gt; map(Function&lt;T, U&gt; fun) { if (this instanceof Present&lt;T&gt; self) { return new Present&lt;&gt;(fun.apply(self.value)); } return new Empty&lt;&gt;(); } This definition differs from the previous one in two ways.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Pattern Matching for instanceof" />
-<meta property="og:description" content="Pattern Matching for instanceof #  " />
+<meta property="og:description" content="Pattern Matching for instanceof #  Pattern Matching for instanceof helps to avoid type casts when we know that they succeed.
+Matching optional values #  For example, we can use this feature to simplify the definition of map for optional values.
+default &lt;U&gt; Optional&lt;U&gt; map(Function&lt;T, U&gt; fun) { if (this instanceof Present&lt;T&gt; self) { return new Present&lt;&gt;(fun.apply(self.value)); } return new Empty&lt;&gt;(); } This definition differs from the previous one in two ways." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/instanceof/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-05T00:51:45+01:00" />
+<meta property="article:modified_time" content="2022-01-05T04:01:48+01:00" />
 
 <title>Pattern Matching for instanceof | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -261,7 +265,13 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#matching-optional-values">Matching optional values</a></li>
+    <li><a href="#flow-scoping">Flow scoping</a></li>
+    <li><a href="#task-expanding-recursive-lists">Task: expanding recursive lists</a></li>
+  </ul>
+</nav>
 
 
 
@@ -276,6 +286,82 @@ https://github.com/alex-shpak/hugo-book
   Pattern Matching for <code>instanceof</code>
   <a class="anchor" href="#pattern-matching-for-instanceof">#</a>
 </h1>
+<p><a href="https://openjdk.java.net/jeps/394">Pattern Matching for <code>instanceof</code></a>
+helps to avoid type casts when we know that they succeed.</p>
+<h2 id="matching-optional-values">
+  Matching optional values
+  <a class="anchor" href="#matching-optional-values">#</a>
+</h2>
+<p>For example, we can use this feature
+to simplify the definition of <code>map</code> for optional values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>This definition differs from the previous one in two ways.
+Firstly, the condition using <code>instanceof</code> introduces a variable <code>self</code>
+of type <code>Optional.Present&lt;T&gt;</code> so we do not need to cast <code>this</code> explicitly.
+Secondly, we do not throw an <code>IllegalStateException</code> for <code>Optional</code> instances
+that are neither <code>Empty</code> nor <code>Present</code>,
+because we know that such instances cannot exist because <code>Optional</code> is sealed.</p>
+<h2 id="flow-scoping">
+  Flow scoping
+  <a class="anchor" href="#flow-scoping">#</a>
+</h2>
+<p>The scope of the <code>self</code> variable is determined using flow scoping.
+As a consequence, <code>self</code> is in scope
+where the compiler than guarantee that the <code>instanceof</code> check is successful.</p>
+<p>Here is an alternative definition of <code>map</code> for optional values
+that demonstrates flow scoping.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+        <span style="color:#f92672">}</span>
+        
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>The condition is now negated, and as a result
+<code>self</code> is in scope after the <code>if</code> statement
+where we only get if its condition is <code>false</code>
+due to the <code>return</code> statement in its body.</p>
+<p>As another example for flow scoping,
+consider a <code>filter</code> function for optional values,
+which can be described using pseudo code as follows.</p>
+<pre tabindex="0"><code>Empty().filter(pred) -&gt; Empty()
+Present(value).filter(pred) -&gt; Present(value) if pred.test(value)
+Present(value).filter(pred) -&gt; Empty()
+</code></pre><p>The <code>filter</code> function takes a
+<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html">Predicate</a>
+as argument and uses it to test a present value.
+If the value of a present optional passes the test
+the optional value is returned unchanged.
+In all other cases the result of <code>filter</code> is <code>Empty</code>.</p>
+<p>We can define this function as a default method for <code>Optional</code>
+by using an <code>instanceof</code> check with a pattern variable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> pred<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">&amp;&amp;</span> pred<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Note that due to flow scoping,
+the pattern variable <code>self</code> is in scope in the second argument of <code>&amp;&amp;</code>
+because this part of the condition is only executed
+when the first part of the condition is <code>true</code>.</p>
+<h2 id="task-expanding-recursive-lists">
+  Task: expanding recursive lists
+  <a class="anchor" href="#task-expanding-recursive-lists">#</a>
+</h2>
+<p>Implement <code>length</code>, <code>map</code>, and <code>filter</code> functions
+as a default methods of the sealed interface <code>RecursiveList</code>
+defined in a <a href="../records/#task-recursive-lists">previous task</a>.
+Use patterns in <code>instanceof</code> checks where possible.
+Add tests to <code>RecursiveListTests</code> that check that the implemented functions
+work as intended.</p>
 </article>
  
       
@@ -315,7 +401,13 @@ by
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#matching-optional-values">Matching optional values</a></li>
+    <li><a href="#flow-scoping">Flow scoping</a></li>
+    <li><a href="#task-expanding-recursive-lists">Task: expanding recursive lists</a></li>
+  </ul>
+</nav>
 
 
  
