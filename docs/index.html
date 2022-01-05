@@ -106,7 +106,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">Java Features</a>
+    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">New Features</a>
   
 
           
@@ -317,11 +317,20 @@ by carefully selecting available operations to manipulate data&mdash;
 in practice, it is often beneficial
 to separate operations from the data they operate on,
 in order to make them more reusable and easier to test.</p>
+<p>In object-oriented languages,
+the result of methods is not only determined by its arguments
+but, possibly, also by the local state of the object they are called on.
+Even if the method is immutable,
+its result may be influenced by local state
+(the implicit environment mentioned above)
+that is not visible from the outside,
+which makes method calls more difficult to reason about.</p>
 <p>In functional languages,
-creating data is separate from using functions
-that can take data as arguments and return data as result.
-Data definitions are describing possibly nested values without any behavior.
-Functions can even be defined in separate modules from the data they operate on.
+the results of functions are only determined by their arguments.
+Functions can take data as arguments and return data as result,
+but datatypes and functions are defined separately.
+Data definitions are describing values without any behavior.
+Functions can be defined in separate modules from the data they operate on.
 In typed functional languages,
 the values functions operate on are usually defined using algebraic datatypes,
 and the functions operating on data are usually defined using pattern matching.</p>

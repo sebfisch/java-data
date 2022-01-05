@@ -22,9 +22,10 @@ Combining these two novelties, there are now four kinds of `switch` constructs:
   * `switch` expressions with fall-through behavior
   * `switch` expressions without fall-through behavior
 
-Switch expressions must be exhaustive, and for enum types
-the compiler checks that they are
-when no default clause is given.
+Switch expressions must be exhaustive
+to ensure that they always yield a value when no exception is thrown.
+For enum types the compiler checks exhaustiveness,
+even when no default clause is given.
 
 ## Arrow labels
 
@@ -55,11 +56,11 @@ rather than expressions.
 ```java
     public static String describe(BaseColor color) {
         switch (color) {
-            case RED -> {
-                return "hot";
+            case RED, GREEN -> {
+                return "ends with consonant";
             }
-            case GREEN, BLUE -> {
-                return "cold";
+            case BLUE -> {
+                return "ends with vowel";
             }
             default -> throw new IllegalArgumentException("unreachable");
         }
@@ -89,10 +90,10 @@ using fall-through behavior and `yield`.
     public static String describe(BaseColor color) {
         return switch (color) {
             case RED:
-                yield "hot";
             case GREEN:
+                yield "ends with consonant";
             case BLUE:
-                yield "cold";
+                yield "ends with vowel";
         };
     }
 ```
@@ -108,10 +109,10 @@ for a `case` branch with an arrow label.
 ```java
     public static String describe(BaseColor color) {
         return switch (color) {
-            case RED -> "hot";
-            case GREEN, BLUE -> {
-                final String cold = "c" + "o" + "l" + "d";
-                yield cold;
+            case RED, GREEN -> "ends with consonant";
+            case BLUE -> {
+                final String result = "ends" + " with " + "vowel";
+                yield result;
             }
         };
     }
@@ -122,3 +123,7 @@ The
 for `BaseColor` contains even more variants of the `describe` function
 including the canonical one using a `switch` expression with arrow labels
 and no `yield`.
+
+Next, we discuss
+[Pattern Matching for `switch`](../switchpatterns)
+which is another extension of the `switch` construct.

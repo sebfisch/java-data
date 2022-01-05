@@ -15,7 +15,7 @@ is used to inspect these values when defining functions.
 
 These two concepts are linked in an important way:
 by comparing patterns in function definitions with
-the definitions of corresponsing data types
+the definitions of corresponding data types
 compilers can check if functions may fail to process their inputs.
 As a result, compilers can guarantee that functions cannot fail
 if their patterns are exhaustive.

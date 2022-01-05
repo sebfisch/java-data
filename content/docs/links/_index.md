@@ -30,3 +30,5 @@ in order of appearance.
   * [Pattern Matching for `instanceof`](https://openjdk.java.net/jeps/394)
   * [Predicate](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html)
   * [Switch Expressions](https://openjdk.java.net/jeps/361)
+  * [Pattern matching for `switch`](https://openjdk.java.net/jeps/406)
+

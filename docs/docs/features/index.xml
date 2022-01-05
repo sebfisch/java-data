@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java Features on Java Data</title>
+    <title>New Features on Java Data</title>
     <link>http://sebfisch.github.io/java-data/docs/features/</link>
-    <description>Recent content in Java Features on Java Data</description>
+    <description>Recent content in New Features on Java Data</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="http://sebfisch.github.io/java-data/docs/features/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -53,7 +53,9 @@ Switch expressions are introduced together with arrow labels, which is an indepe
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/switchpatterns/</guid>
-      <description>Pattern Matching for switch #  </description>
+      <description>Pattern Matching for switch #  Pattern matching for switch significantly expands the types of values that can be inspected in a switch construct and the ways in which they can be inspected. It is available in Java 17 as a preview feature, and has to be enabled explicitly using a command-line parameter. The source code for this tutorial is configured accordingly.
+Traditionally, switch statements can only inspect
+ primitive integral numbers, their boxed versions, strings, or enum values,  and inspecting null always leads to a NullPointerException.</description>
     </item>
     
     <item>

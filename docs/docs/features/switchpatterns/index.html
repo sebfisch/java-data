@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Pattern Matching for switch #  ">
+<meta name="description" content="Pattern Matching for switch #  Pattern matching for switch significantly expands the types of values that can be inspected in a switch construct and the ways in which they can be inspected. It is available in Java 17 as a preview feature, and has to be enabled explicitly using a command-line parameter. The source code for this tutorial is configured accordingly.
+Traditionally, switch statements can only inspect
+ primitive integral numbers, their boxed versions, strings, or enum values,  and inspecting null always leads to a NullPointerException.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Pattern Matching for switch" />
-<meta property="og:description" content="Pattern Matching for switch #  " />
+<meta property="og:description" content="Pattern Matching for switch #  Pattern matching for switch significantly expands the types of values that can be inspected in a switch construct and the ways in which they can be inspected. It is available in Java 17 as a preview feature, and has to be enabled explicitly using a command-line parameter. The source code for this tutorial is configured accordingly.
+Traditionally, switch statements can only inspect
+ primitive integral numbers, their boxed versions, strings, or enum values,  and inspecting null always leads to a NullPointerException." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switchpatterns/" /><meta property="article:section" content="docs" />
 
@@ -104,7 +108,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">Java Features</a>
+    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">New Features</a>
   
 
           
@@ -279,7 +283,13 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#type-patterns">Type patterns</a></li>
+    <li><a href="#guarded-patterns">Guarded patterns</a></li>
+    <li><a href="#null-patterns"><code>null</code> patterns</a></li>
+  </ul>
+</nav>
 
 
 
@@ -294,6 +304,145 @@ https://github.com/alex-shpak/hugo-book
   Pattern Matching for <code>switch</code>
   <a class="anchor" href="#pattern-matching-for-switch">#</a>
 </h1>
+<p><a href="https://openjdk.java.net/jeps/406">Pattern matching for <code>switch</code></a>
+significantly expands the types of values
+that can be inspected in a <code>switch</code> construct
+and the ways in which they can be inspected.
+It is available in Java 17 as a preview feature,
+and has to be enabled explicitly using a command-line parameter.
+The source code for this tutorial is configured accordingly.</p>
+<p>Traditionally,
+<code>switch</code> statements can only inspect</p>
+<ul>
+<li>primitive integral numbers,</li>
+<li>their boxed versions,</li>
+<li>strings, or</li>
+<li>enum values,</li>
+</ul>
+<p>and inspecting <code>null</code> always leads to a <code>NullPointerException</code>.
+Now, arbitrary reference types can be inspected using type patterns
+and <code>null</code> checks can be incorporated into <code>switch</code> constructs.
+Guarded patterns allow to combine patterns with boolean expressions.</p>
+<h2 id="type-patterns">
+  Type patterns
+  <a class="anchor" href="#type-patterns">#</a>
+</h2>
+<p>Type patterns,
+as introduced with <a href="../instanceof">Pattern Matching for <code>instanceof</code></a>,
+can now also be used in <code>switch</code> constructs.
+We can use them to further improve the implementation
+of our <code>map</code> function for optional values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> Empty<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+            <span style="color:#66d9ef">case</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>This implementation is an improvement over the one using <code>instanceof</code>
+because the compiler can check that we have covered all cases.
+Type patterns use the notion of type coverage
+in order to determine that a <code>switch</code> expression is exhaustive.
+This notion inspects permitted instances of sealed classes and interfaces
+to determine if a <code>switch</code> expression without default case
+(like the one shown above)
+is exhaustive.</p>
+<p>When using patterns in <code>switch</code> statements,
+they are also required to be exhaustive (like <code>switch</code> expressions.)
+For backwards compatibility,
+this requirement is not extended to traditional switch statements,
+but, in the future,
+compilers may generate a warning for incomplete traditional <code>switch</code> statements.</p>
+<h2 id="guarded-patterns">
+  Guarded patterns
+  <a class="anchor" href="#guarded-patterns">#</a>
+</h2>
+<p>The scope of variables introduced in type patterns
+is determined using flow scoping just like with <code>instanceof</code>.
+Here is an improved implementation of the <code>filter</code> function for optional values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> pred<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> Empty<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">-&gt;</span> self<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">&amp;&amp;</span> pred<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> self<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Just like with <code>map</code>, we benefit from an exhaustiveness check by the compiler.</p>
+<p>Note that there are two cases for present values.
+The first one uses a guarded pattern,
+which combines a pattern with a boolean expression.
+The condition is only evaluated if the pattern to the left of <code>&amp;&amp;</code> matches.
+Consequently, the pattern variable <code>self</code> is in scope in the condition
+as well as in the right hand side of the <code>case</code> branch.
+The pattern in the second <code>case</code> branch for present values is not guarded.
+It is less restrictive than the previous one and, therefore, said to dominate it.
+As patterns are tested top down, the last branch only matches
+if the present value is not accepted by the filter predicate.</p>
+<p>It would be compile time error
+to change the order of the two branches for present values,
+because the guarded pattern would be dominated
+by the pattern in the previous branch and, therefore,
+the branch with the guarded pattern would be unreachable.
+This check helps avoid unreachable branches,
+but it does not prevent them completely.
+For example, we could add a <code>default</code> branch
+at the end of the <code>switch</code> expression
+without producing a compile-time error.
+While such a branch is dominated by the previous branches together,
+it is not dominated by a single previous branch and, currently,
+not flagged by the compiler.</p>
+<p>The are additional subtleties involving flow scoping and fall-through behaviour.
+Interested readers are referred to the description of the language feature
+linked at the top of this page for details.</p>
+<h2 id="null-patterns">
+  <code>null</code> patterns
+  <a class="anchor" href="#null-patterns">#</a>
+</h2>
+<p>Traditional <code>switch</code> constructs throw a <code>NullPointerException</code>
+when inspecting the <code>null</code> value.
+The new <code>switch</code> constructs retains this behavior in some cases.
+As an example, consider the following function on <code>RGBColor</code> values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>RGBColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;reddish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;greenish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;blueish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;colorless&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>This function uses multiple guarded patterns to determine a color tendency
+and a default branch that matches if all color values are the same.
+The call <code>describe(null)</code> throws a <code>NullPointerException</code>,
+because the default branch does not match <code>null</code> for backwards compatibility.</p>
+<p>Here is an alternative definition that renders <code>null</code> values colorless.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>RGBColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;reddish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;greenish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;blueish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;colorless&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>This definition uses a <code>null</code> pattern and the new <code>default</code> case label
+to handle both cases in a single branch.
+With this definition the call <code>describe(null)</code> returns <code>&quot;colorless&quot;</code>.</p>
+<p>Here is an alternative implementation with the same behavior.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>RGBColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;reddish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;greenish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">red</span> <span style="color:#f92672">&amp;&amp;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">blue</span> <span style="color:#f92672">&gt;</span> c<span style="color:#f92672">.</span><span style="color:#a6e22e">green</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;blueish&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor c <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;colorless&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>The result of the call <code>describe(null)</code> is <code>&quot;colorless&quot;</code>,
+like with the previous definition using an explicit <code>null</code> pattern.</p>
+<p>While type patterns do not always match the <code>null</code> value, in this case,
+the final type pattern does match <code>null</code>.
+This is because total type patterns
+(which match the type of the inspected value)
+always match <code>null</code>.
+Note that the type pattern in the guarded patterns do not match <code>null</code>.
+If they did, we would still get an exception when evaluating the condition.</p>
 </article>
  
       
@@ -333,7 +482,13 @@ by
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#type-patterns">Type patterns</a></li>
+    <li><a href="#guarded-patterns">Guarded patterns</a></li>
+    <li><a href="#null-patterns"><code>null</code> patterns</a></li>
+  </ul>
+</nav>
 
 
  

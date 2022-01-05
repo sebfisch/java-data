@@ -1,9 +1,9 @@
 ---
-title: Java Features
+title: New Features
 weight: 20
 ---
 
-# Java Features
+# New Features
 
 We now discuss selected new features in Java 17 
 that help to adress the drawbacks
@@ -16,5 +16,5 @@ help to process corresponding values.
 We will also discuss
 [Pattern Matching for `switch`](switchpatterns) and
 [Record Patterns](recordpatterns)
-which are planned for a future Java version
+which are planned for future Java versions
 and partially available as a preview feaure.

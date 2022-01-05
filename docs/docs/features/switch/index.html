@@ -12,7 +12,7 @@ Switch expressions are introduced together with arrow labels, which is an indepe
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switch/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-05T12:40:58+01:00" />
+<meta property="article:modified_time" content="2022-01-05T12:44:56+01:00" />
 
 <title>Switch Expressions | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -106,7 +106,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">Java Features</a>
+    <a href="http://sebfisch.github.io/java-data/docs/features/" class="">New Features</a>
   
 
           
@@ -317,9 +317,10 @@ Unlike the traditional fall-through behavior,
 <li><code>switch</code> expressions with fall-through behavior</li>
 <li><code>switch</code> expressions without fall-through behavior</li>
 </ul>
-<p>Switch expressions must be exhaustive, and for enum types
-the compiler checks that they are
-when no default clause is given.</p>
+<p>Switch expressions must be exhaustive
+to ensure that they always yield a value when no exception is thrown.
+For enum types the compiler checks exhaustiveness,
+even when no default clause is given.</p>
 <h2 id="arrow-labels">
   Arrow labels
   <a class="anchor" href="#arrow-labels">#</a>
@@ -344,11 +345,11 @@ when new enum values are added without adjusting the definition of <code>asHexSt
 rather than expressions.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">case</span> RED <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hot&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">,</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
             <span style="color:#f92672">}</span>
-            <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">,</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;cold&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ends with vowel&#34;</span><span style="color:#f92672">;</span>
             <span style="color:#f92672">}</span>
             <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unreachable&#34;</span><span style="color:#f92672">);</span>
         <span style="color:#f92672">}</span>
@@ -375,10 +376,10 @@ using fall-through behavior and <code>yield</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
             <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">:</span>
-                yield <span style="color:#e6db74">&#34;hot&#34;</span><span style="color:#f92672">;</span>
             <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">:</span>
+                yield <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
             <span style="color:#66d9ef">case</span> BLUE<span style="color:#f92672">:</span>
-                yield <span style="color:#e6db74">&#34;cold&#34;</span><span style="color:#f92672">;</span>
+                yield <span style="color:#e6db74">&#34;ends with vowel&#34;</span><span style="color:#f92672">;</span>
         <span style="color:#f92672">};</span>
     <span style="color:#f92672">}</span>
 </code></pre></div><p>We do not need a default case in an exhaustive <code>switch</code> expression,
@@ -390,10 +391,10 @@ The following version of <code>describe</code> uses <code>yield</code> in a bloc
 for a <code>case</code> branch with an arrow label.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">case</span> RED <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;hot&#34;</span><span style="color:#f92672">;</span>
-            <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">,</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-                <span style="color:#66d9ef">final</span> String cold <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;c&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;o&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;l&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;d&#34;</span><span style="color:#f92672">;</span>
-                yield cold<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">,</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                <span style="color:#66d9ef">final</span> String result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ends&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; with &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;vowel&#34;</span><span style="color:#f92672">;</span>
+                yield result<span style="color:#f92672">;</span>
             <span style="color:#f92672">}</span>
         <span style="color:#f92672">};</span>
     <span style="color:#f92672">}</span>
@@ -402,6 +403,9 @@ for a <code>case</code> branch with an arrow label.</p>
 for <code>BaseColor</code> contains even more variants of the <code>describe</code> function
 including the canonical one using a <code>switch</code> expression with arrow labels
 and no <code>yield</code>.</p>
+<p>Next, we discuss
+<a href="../switchpatterns">Pattern Matching for <code>switch</code></a>
+which is another extension of the <code>switch</code> construct.</p>
 </article>
  
       
