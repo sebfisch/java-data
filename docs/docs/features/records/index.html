@@ -202,6 +202,24 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="http://sebfisch.github.io/java-data/docs/tasks/" class="">Programming Tasks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="http://sebfisch.github.io/java-data/docs/links/" class="">External Links</a>
   
 
@@ -268,12 +286,12 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#rgb-colors">RGB colors</a></li>
     <li><a href="#optional-values">Optional values</a>
       <ul>
-        <li><a href="#task-null-check">Task: null check</a></li>
+        <li><a href="#task-1-add-null-check-for-optionals">Task 1: add null check for optionals</a></li>
       </ul>
     </li>
     <li><a href="#local-declarations">Local declarations</a></li>
-    <li><a href="#task-recursive-lists">Task: recursive lists</a></li>
-    <li><a href="#task-advent-of-code">Task: advent of code</a></li>
+    <li><a href="#task-2-implement-recursive-lists">Task 2: implement recursive lists</a></li>
+    <li><a href="#task-3-solve-advent-of-code-task">Task 3: solve advent of code task</a></li>
   </ul>
 </nav>
 
@@ -360,9 +378,9 @@ They are implicitly static if they are nested.
 Also note that,
 while records are not allowed to declare an explicit super-class,
 they can implement interfaces and inherit their default methods.</p>
-<h3 id="task-null-check">
-  Task: null check
-  <a class="anchor" href="#task-null-check">#</a>
+<h3 id="task-1-add-null-check-for-optionals">
+  Task 1: add null check for optionals
+  <a class="anchor" href="#task-1-add-null-check-for-optionals">#</a>
 </h3>
 <p>Provide an explicit constructor for <code>Optional.Present</code>
 that rejects passed <code>null</code> values
@@ -419,17 +437,17 @@ and the <code>brightness</code> method of the local record
 which provides read access to the pre-computed brightness.
 Finally, the brightness is discarded using <code>Optional.map</code>
 and the <code>color</code> method of the local record.</p>
-<h2 id="task-recursive-lists">
-  Task: recursive lists
-  <a class="anchor" href="#task-recursive-lists">#</a>
+<h2 id="task-2-implement-recursive-lists">
+  Task 2: implement recursive lists
+  <a class="anchor" href="#task-2-implement-recursive-lists">#</a>
 </h2>
 <p>Define a sealed interface <code>RecursiveList&lt;T&gt;</code>
 with nested records <code>Empty&lt;T&gt;</code> and <code>Populated&lt;T&gt;</code> for their variants.
 Define a test class <code>RecursiveListTests</code>
 which checks that the list implementation works as intended.</p>
-<h2 id="task-advent-of-code">
-  Task: advent of code
-  <a class="anchor" href="#task-advent-of-code">#</a>
+<h2 id="task-3-solve-advent-of-code-task">
+  Task 3: solve advent of code task
+  <a class="anchor" href="#task-3-solve-advent-of-code-task">#</a>
 </h2>
 <p><a href="https://adventofcode.com/2021/day/2">Advent of Code 2021, Day 2</a>
 poses a task where the position of a submarine is adjusted
@@ -489,12 +507,12 @@ by
     <li><a href="#rgb-colors">RGB colors</a></li>
     <li><a href="#optional-values">Optional values</a>
       <ul>
-        <li><a href="#task-null-check">Task: null check</a></li>
+        <li><a href="#task-1-add-null-check-for-optionals">Task 1: add null check for optionals</a></li>
       </ul>
     </li>
     <li><a href="#local-declarations">Local declarations</a></li>
-    <li><a href="#task-recursive-lists">Task: recursive lists</a></li>
-    <li><a href="#task-advent-of-code">Task: advent of code</a></li>
+    <li><a href="#task-2-implement-recursive-lists">Task 2: implement recursive lists</a></li>
+    <li><a href="#task-3-solve-advent-of-code-task">Task 3: solve advent of code task</a></li>
   </ul>
 </nav>
 

@@ -89,11 +89,11 @@ the pattern variable `self` is in scope in the second argument of `&&`
 because this part of the condition is only executed 
 when the first part of the condition is `true`.
 
-## Task: expanding recursive lists
+## Task 4: expand recursive lists
 
 Implement `length`, `map`, and `filter` functions
 as default methods of the sealed interface `RecursiveList`
-defined in a [previous task](../records/#task-recursive-lists).
+defined in a [previous task](../records/#task-2-implement-recursive-lists).
 
 Here are pseudo-code descriptions for those functions.
 

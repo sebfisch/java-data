@@ -138,7 +138,7 @@ if all (non-negative) values for the base colors are zero.
 The second clause applies only if this condition is false.
 Both clauses introduce variables `r`, `g`, and `b`
 for the values of the color components
-which are used to compute the result of the function `saturate`.
+which are used to compute the result of the function `saturation`.
 
 If we implement `saturation` as a method of `BasicRGBColor`
 we can access the private fields `red`, `green`, and `blue`

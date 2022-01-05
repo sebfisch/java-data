@@ -14,7 +14,7 @@ default &lt;U&gt; Optional&lt;U&gt; map(Function&lt;T, U&gt; fun) { if (this ins
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/instanceof/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-05T04:01:48+01:00" />
+<meta property="article:modified_time" content="2022-01-05T04:15:19+01:00" />
 
 <title>Pattern Matching for instanceof | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -204,6 +204,24 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="http://sebfisch.github.io/java-data/docs/tasks/" class="">Programming Tasks</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="http://sebfisch.github.io/java-data/docs/links/" class="">External Links</a>
   
 
@@ -269,7 +287,7 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#matching-optional-values">Matching optional values</a></li>
     <li><a href="#flow-scoping">Flow scoping</a></li>
-    <li><a href="#task-expanding-recursive-lists">Task: expanding recursive lists</a></li>
+    <li><a href="#task-4-expand-recursive-lists">Task 4: expand recursive lists</a></li>
   </ul>
 </nav>
 
@@ -352,13 +370,13 @@ by using an <code>instanceof</code> check with a pattern variable.</p>
 the pattern variable <code>self</code> is in scope in the second argument of <code>&amp;&amp;</code>
 because this part of the condition is only executed
 when the first part of the condition is <code>true</code>.</p>
-<h2 id="task-expanding-recursive-lists">
-  Task: expanding recursive lists
-  <a class="anchor" href="#task-expanding-recursive-lists">#</a>
+<h2 id="task-4-expand-recursive-lists">
+  Task 4: expand recursive lists
+  <a class="anchor" href="#task-4-expand-recursive-lists">#</a>
 </h2>
 <p>Implement <code>length</code>, <code>map</code>, and <code>filter</code> functions
 as default methods of the sealed interface <code>RecursiveList</code>
-defined in a <a href="../records/#task-recursive-lists">previous task</a>.</p>
+defined in a <a href="../records/#task-2-implement-recursive-lists">previous task</a>.</p>
 <p>Here are pseudo-code descriptions for those functions.</p>
 <pre tabindex="0"><code>Empty().length() -&gt; 0
 Populated(_,tail).length() -&gt; 1 + tail.length()
@@ -415,7 +433,7 @@ by
   <ul>
     <li><a href="#matching-optional-values">Matching optional values</a></li>
     <li><a href="#flow-scoping">Flow scoping</a></li>
-    <li><a href="#task-expanding-recursive-lists">Task: expanding recursive lists</a></li>
+    <li><a href="#task-4-expand-recursive-lists">Task 4: expand recursive lists</a></li>
   </ul>
 </nav>
 

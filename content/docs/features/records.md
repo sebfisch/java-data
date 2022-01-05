@@ -88,7 +88,7 @@ Also note that,
 while records are not allowed to declare an explicit super-class,
 they can implement interfaces and inherit their default methods.
 
-### Task: null check
+### Task 1: add null check for optionals
 
 Provide an explicit constructor for `Optional.Present`
 that rejects passed `null` values
@@ -152,14 +152,14 @@ which provides read access to the pre-computed brightness.
 Finally, the brightness is discarded using `Optional.map`
 and the `color` method of the local record.
 
-## Task: recursive lists
+## Task 2: implement recursive lists
 
 Define a sealed interface `RecursiveList<T>` 
 with nested records `Empty<T>` and `Populated<T>` for their variants.
 Define a test class `RecursiveListTests`
 which checks that the list implementation works as intended.
 
-## Task: advent of code
+## Task 3: solve advent of code task
 
 [Advent of Code 2021, Day 2](https://adventofcode.com/2021/day/2)
 poses a task where the position of a submarine is adjusted
