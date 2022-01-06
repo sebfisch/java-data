@@ -7,7 +7,7 @@ weight: 20
 
 We now discuss selected new features in Java 17 
 that help to adress the drawbacks
-of defining and using algebraic datatypes in Java.
+of defining and using algebraic datatypes.
 [Sealed Classes](sealed) and [Records](records)
 help to define algebraic datatypes, whereas
 [Pattern Matching for `instanceof`](instanceof) and

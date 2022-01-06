@@ -344,7 +344,7 @@ because we know that such instances cannot exist because <code>Optional</code> i
 </h2>
 <p>The scope of the <code>self</code> variable is determined using flow scoping.
 As a consequence, <code>self</code> is in scope
-where the compiler than guarantee that the <code>instanceof</code> check is successful.</p>
+where the compiler can guarantee that the <code>instanceof</code> check is successful.</p>
 <p>Here is an alternative definition of <code>map</code> for optional values
 that demonstrates flow scoping.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>

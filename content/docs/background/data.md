@@ -29,7 +29,7 @@ However, sum types are more general than enum types.
 They can be used to define types with an unbounded number of values
 which correspond to a finite number of variants.
 
-As a basic example for such a type 
+As a basic example
 consider a type for optional values which can be empty or present.
 Present optional values contain an arbitrary value. 
 As a result, the number of optional values is not finite,

@@ -151,7 +151,7 @@ and the `brightness` method of the local record
 which provides read access to the pre-computed brightness.
 Finally, the brightness is discarded using `Optional.map`
 and the `color` method of the local record.
-The arguments of `map` are provided as
+The arguments of `map` and `comparing` are provided as
 [Method References](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html).
 
 ## Task 2: implement recursive lists

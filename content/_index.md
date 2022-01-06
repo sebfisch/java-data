@@ -59,7 +59,8 @@ of related features that have been included since the previous LTS release.
 
 Before we look at specific new features in Java 17,
 we discuss the underlying concepts algebraic datatypes and pattern matching
-as a background to understand the motivation behind the new features.
+as a [background](docs/background)
+to understand the motivation behind the new features.
 
 The underlying source code is available online, 
 and this tutorial includes tasks to extend it.

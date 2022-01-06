@@ -9,9 +9,12 @@ weight: 21
 are motivated by the desire to define sum types
 where the class hierarchy is fixed 
 and not intended to be extended by others.
-Using the new keywords `sealed` and `permits`
+Using the new keywords[^keywords] `sealed` and `permits`
 classes (and interfaces) can restrict
 which other classes can extend (or implement) them.
+
+[^keywords]: They are not keywords but restricted identifiers,
+but we won't go into the details of this distinction.
 
 Sealed classes provide a middle ground between normal classes,
 which can be extended without restrictions,

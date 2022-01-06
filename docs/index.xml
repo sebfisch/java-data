@@ -33,7 +33,7 @@ asHexString(RED) -&amp;gt; &amp;quot;#ff0000&amp;quot; asHexString(GREEN) -&amp;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/sealed/</guid>
-      <description>Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+      <description>Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
 Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all.</description>
     </item>
     
@@ -85,7 +85,7 @@ Traditionally, switch statements can only inspect
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/recordpatterns/</guid>
-      <description>Record Patterns #  Record Patterns are not available in Java 17. We briefly mention them anyway because they represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
+      <description>Record Patterns #  Record Patterns are not available in Java 17, but are expected to be provided in some later version. We briefly mention them anyway because they represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
 With appropriate definitions for three-argument functions min and max, we could1 implement a saturation method for RGBColor values as follows.
 public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) &amp;amp;&amp;amp; max(r,g,b) == 0 -&amp;gt; 0; case RGBColor(var r, var g, var b) -&amp;gt; (max(r,g,b) - min(r,g,b)) / max(r,g,b); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.</description>
     </item>

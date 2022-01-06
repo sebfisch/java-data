@@ -13,4 +13,4 @@ in order of appearance.
   * [Task 3: solve advent of code task](../features/records/#task-3-solve-advent-of-code-task)
   * [Task 4: expand recursive lists](../features/instanceof/#task-4-expand-recursive-lists)
   * [Task 5: refactor recursive lists](../features/switchpatterns/#task-5-refactor-recursive-lists)
-  * [Task 6: refactor AoC solution](../features/switchpatterns/#task-6-refactor-aoc-solution)
+  * [Task 6: refactor advent of code solution](../features/switchpatterns/#task-6-refactor-aoc-solution)

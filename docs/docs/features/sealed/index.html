@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+<meta name="description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
 Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Sealed Classes" />
-<meta property="og:description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+<meta property="og:description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
 Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/sealed/" /><meta property="article:section" content="docs" />
@@ -318,7 +318,7 @@ https://github.com/alex-shpak/hugo-book
 are motivated by the desire to define sum types
 where the class hierarchy is fixed
 and not intended to be extended by others.
-Using the new keywords <code>sealed</code> and <code>permits</code>
+Using the new keywords<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> <code>sealed</code> and <code>permits</code>
 classes (and interfaces) can restrict
 which other classes can extend (or implement) them.</p>
 <p>Sealed classes provide a middle ground between normal classes,
@@ -386,6 +386,15 @@ the sub-class could be extended by arbitrary other classes
 breaking the seal of the super-class.</p>
 <p>We now look at <a href="../records">Records</a>
 which help to further simplify our definition of optional values.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>They are not keywords but restricted identifiers,
+but we won&rsquo;t go into the details of this distinction.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
 </article>
  
       

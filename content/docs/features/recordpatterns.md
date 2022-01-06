@@ -6,7 +6,8 @@ weight: 26
 # Record Patterns
 
 [Record Patterns](https://openjdk.java.net/jeps/405)
-are not available in Java 17.
+are not available in Java 17,
+but are expected to be provided in some later version.
 We briefly mention them anyway 
 because they represent an important aspect of pattern matching
 discussed in the background section:
@@ -50,5 +51,3 @@ without mentioning corresponding types explicitly.
 
 In addition to record patterns, array patterns will be introduced
 to provide the ability to deconstruct arrays.
-
-In the final section, we introduce [Text Blocks](../textblocks).

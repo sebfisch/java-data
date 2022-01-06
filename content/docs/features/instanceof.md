@@ -34,7 +34,7 @@ because we know that such instances cannot exist because `Optional` is sealed.
 
 The scope of the `self` variable is determined using flow scoping.
 As a consequence, `self` is in scope 
-where the compiler than guarantee that the `instanceof` check is successful.
+where the compiler can guarantee that the `instanceof` check is successful.
 
 Here is an alternative definition of `map` for optional values 
 that demonstrates flow scoping.

@@ -14,7 +14,7 @@ Traditionally, switch statements can only inspect
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switchpatterns/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-05T23:12:11+01:00" />
+<meta property="article:modified_time" content="2022-01-06T01:08:57+01:00" />
 
 <title>Pattern Matching for switch | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -462,10 +462,9 @@ like with the previous definition using an explicit <code>null</code> pattern.</
 the final type pattern does match <code>null</code>.
 This is because total type patterns
 (which match the type of the inspected value)
-should always match and, therefore, also match <code>null</code>.
+are expected to always match and, therefore, also match <code>null</code>.
 Note that the type pattern in the guarded patterns do not match <code>null</code>.
 If they did, we would get an exception when evaluating the condition.</p>
-<p>Next, we look at <a href="../recordpatterns">Record Patterns</a>.</p>
 <h2 id="task-6-refactor-aoc-solution">
   Task 6: refactor AoC solution
   <a class="anchor" href="#task-6-refactor-aoc-solution">#</a>
@@ -475,6 +474,8 @@ If they did, we would get an exception when evaluating the condition.</p>
 to use pattern matching for <code>instanceof</code> or <code>switch</code> expressions.
 Check your IDE for code cleanup operations related to the new Java features,
 to see if it can help you with this task.</p>
+<p>To conclude the pattern-matching discussions,
+we look at <a href="../recordpatterns">Record Patterns</a>.</p>
 </article>
  
       

@@ -170,11 +170,9 @@ While type patterns do not always match the `null` value, in this case,
 the final type pattern does match `null`.
 This is because total type patterns
 (which match the type of the inspected value)
-should always match and, therefore, also match `null`.
+are expected to always match and, therefore, also match `null`.
 Note that the type pattern in the guarded patterns do not match `null`.
 If they did, we would get an exception when evaluating the condition.
-
-Next, we look at [Record Patterns](../recordpatterns).
 
 ## Task 6: refactor AoC solution
 
@@ -183,3 +181,6 @@ Refactor your solution the the
 to use pattern matching for `instanceof` or `switch` expressions.
 Check your IDE for code cleanup operations related to the new Java features,
 to see if it can help you with this task.
+
+To conclude the pattern-matching discussions,
+we look at [Record Patterns](../recordpatterns).
