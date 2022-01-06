@@ -54,7 +54,7 @@ public sealed interface SealedOptional<T>
 
 This definition resembles the previous one with the following differences:
   * The `sealed` keyword marks the interface as sealed.
-  * The `permits` keyword starts a list of allowed sub-classes.
+  * The `permits` keyword starts a list of allowed implementations.
   * The nested classes are declared as `final` to prevent further sub-classes.
 
 Because we know all possible implementations of `SealedOptional`,
