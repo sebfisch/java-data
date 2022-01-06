@@ -34,7 +34,7 @@ Another feature introduced together with records are local definitions for recor
       <guid>http://sebfisch.github.io/java-data/docs/features/instanceof/</guid>
       <description>Pattern Matching for instanceof #  Pattern Matching for instanceof helps to avoid type casts when we know that they succeed.
 Matching optional values #  For example, we can use this feature to simplify the definition of map for optional values.
-default &amp;lt;U&amp;gt; Optional&amp;lt;U&amp;gt; map(Function&amp;lt;T, U&amp;gt; fun) { if (this instanceof Present&amp;lt;T&amp;gt; self) { return new Present&amp;lt;&amp;gt;(fun.apply(self.value)); } return new Empty&amp;lt;&amp;gt;(); } This definition differs from the previous one in two ways.</description>
+default &amp;lt;U&amp;gt; Optional&amp;lt;U&amp;gt; map(Function&amp;lt;T, U&amp;gt; fun) { if (this instanceof Present&amp;lt;T&amp;gt; self) { return new Present&amp;lt;&amp;gt;(fun.apply(self.value)); } return new Empty&amp;lt;&amp;gt;(); } Here, the condition using instanceof introduces a variable self of type Optional.</description>
     </item>
     
     <item>

@@ -23,12 +23,8 @@ to simplify the definition of `map` for optional values.
     }
 ```
 
-This definition differs from the previous one in two ways.
-Firstly, the condition using `instanceof` introduces a variable `self`
+Here, the condition using `instanceof` introduces a variable `self`
 of type `Optional.Present<T>` so we do not need to cast `this` explicitly.
-Secondly, we do not throw an `IllegalStateException` for `Optional` instances
-that are neither `Empty` nor `Present`, 
-because we know that such instances cannot exist because `Optional` is sealed.
 
 ## Flow scoping
 

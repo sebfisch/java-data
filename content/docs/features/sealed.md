@@ -57,6 +57,23 @@ This definition resembles the previous one with the following differences:
   * The `permits` keyword starts a list of allowed sub-classes.
   * The nested classes are declared as `final` to prevent further sub-classes.
 
+Because we know all possible implementations of `SealedOptional`,
+we can simplify the definition of the `map` function.
+
+```java
+    default <U> SealedOptional<U> map(Function<T,U> fun) {
+        if (this instanceof Present) {
+            final Present<T> self = (Present<T>) this;
+            return new Present<>(fun.apply(self.value));
+        }
+
+        return new Empty<>();
+    }
+```
+
+If the optional value is not present, we know that it must be empty
+and do not need to throw an `IllegalStateException` for other cases.
+
 ## Restrictions
 
 It is an error to define a class extending a sealed class

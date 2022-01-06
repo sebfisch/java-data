@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Pattern Matching for instanceof #  Pattern Matching for instanceof helps to avoid type casts when we know that they succeed.
 Matching optional values #  For example, we can use this feature to simplify the definition of map for optional values.
-default &lt;U&gt; Optional&lt;U&gt; map(Function&lt;T, U&gt; fun) { if (this instanceof Present&lt;T&gt; self) { return new Present&lt;&gt;(fun.apply(self.value)); } return new Empty&lt;&gt;(); } This definition differs from the previous one in two ways.">
+default &lt;U&gt; Optional&lt;U&gt; map(Function&lt;T, U&gt; fun) { if (this instanceof Present&lt;T&gt; self) { return new Present&lt;&gt;(fun.apply(self.value)); } return new Empty&lt;&gt;(); } Here, the condition using instanceof introduces a variable self of type Optional.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Pattern Matching for instanceof" />
 <meta property="og:description" content="Pattern Matching for instanceof #  Pattern Matching for instanceof helps to avoid type casts when we know that they succeed.
 Matching optional values #  For example, we can use this feature to simplify the definition of map for optional values.
-default &lt;U&gt; Optional&lt;U&gt; map(Function&lt;T, U&gt; fun) { if (this instanceof Present&lt;T&gt; self) { return new Present&lt;&gt;(fun.apply(self.value)); } return new Empty&lt;&gt;(); } This definition differs from the previous one in two ways." />
+default &lt;U&gt; Optional&lt;U&gt; map(Function&lt;T, U&gt; fun) { if (this instanceof Present&lt;T&gt; self) { return new Present&lt;&gt;(fun.apply(self.value)); } return new Empty&lt;&gt;(); } Here, the condition using instanceof introduces a variable self of type Optional." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/instanceof/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-05T10:36:18+01:00" />
+<meta property="article:modified_time" content="2022-01-06T02:15:53+01:00" />
 
 <title>Pattern Matching for instanceof | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -332,12 +332,8 @@ to simplify the definition of <code>map</code> for optional values.</p>
 
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
     <span style="color:#f92672">}</span>
-</code></pre></div><p>This definition differs from the previous one in two ways.
-Firstly, the condition using <code>instanceof</code> introduces a variable <code>self</code>
-of type <code>Optional.Present&lt;T&gt;</code> so we do not need to cast <code>this</code> explicitly.
-Secondly, we do not throw an <code>IllegalStateException</code> for <code>Optional</code> instances
-that are neither <code>Empty</code> nor <code>Present</code>,
-because we know that such instances cannot exist because <code>Optional</code> is sealed.</p>
+</code></pre></div><p>Here, the condition using <code>instanceof</code> introduces a variable <code>self</code>
+of type <code>Optional.Present&lt;T&gt;</code> so we do not need to cast <code>this</code> explicitly.</p>
 <h2 id="flow-scoping">
   Flow scoping
   <a class="anchor" href="#flow-scoping">#</a>
