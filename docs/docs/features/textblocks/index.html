@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Programming Tasks #  Here is a list of programming tasks posed throughout the tutorial, in order of appearance.
- Task 1: add null check for optionals Task 2: implement recursive lists Task 3: solve advent of code task Task 4: expand recursive lists Task 5: refactor recursive lists Task 6: refactor AoC solution  ">
+<meta name="description" content="Text Blocks #  Text Blocks provide a new way to write string literals in Java. They have nothing to do with algebraic datatypes or pattern matching, but we mention them anyway to complete our tour of new language features in Java 17 introduced by Project Amber since the previous LTS release.
+Here is a definition from my solution to the Advent of Code task that uses a text block for the example input.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Programming Tasks" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://sebfisch.github.io/java-data/docs/tasks/" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Text Blocks" />
+<meta property="og:description" content="Text Blocks #  Text Blocks provide a new way to write string literals in Java. They have nothing to do with algebraic datatypes or pattern matching, but we mention them anyway to complete our tour of new language features in Java 17 introduced by Project Amber since the previous LTS release.
+Here is a definition from my solution to the Advent of Code task that uses a text block for the example input." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/textblocks/" /><meta property="article:section" content="docs" />
 
-<title>Programming Tasks | Java Data</title>
+
+
+<title>Text Blocks | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
 <link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/java-data/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css" integrity="sha256-RhgbyTN1upMgJudTs3xA5v&#43;LsWqe93DHi8xmPkV3sbo=" crossorigin="anonymous"><link rel="alternate" type="application/rss+xml" href="http://sebfisch.github.io/java-data/docs/tasks/index.xml" title="Java Data" />
-<!--
+<link rel="stylesheet" href="/java-data/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css" integrity="sha256-RhgbyTN1upMgJudTs3xA5v&#43;LsWqe93DHi8xmPkV3sbo=" crossorigin="anonymous"><!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
 -->
@@ -195,7 +197,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="http://sebfisch.github.io/java-data/docs/features/textblocks/" class="">Text Blocks</a>
+    <a href="http://sebfisch.github.io/java-data/docs/features/textblocks/" class=" active">Text Blocks</a>
   
 
         </li>
@@ -213,7 +215,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="http://sebfisch.github.io/java-data/docs/tasks/" class=" active">Programming Tasks</a>
+    <a href="http://sebfisch.github.io/java-data/docs/tasks/" class="">Programming Tasks</a>
   
 
           
@@ -278,7 +280,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/java-data/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Programming Tasks</strong>
+  <strong>Text Blocks</strong>
 
   <label for="toc-control">
     
@@ -303,20 +305,48 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="programming-tasks">
-  Programming Tasks
-  <a class="anchor" href="#programming-tasks">#</a>
+  <article class="markdown"><h1 id="text-blocks">
+  Text Blocks
+  <a class="anchor" href="#text-blocks">#</a>
 </h1>
-<p>Here is a list of programming tasks posed throughout the tutorial,
-in order of appearance.</p>
-<ul>
-<li><a href="../features/records/#task-1-add-null-check-for-optionals">Task 1: add null check for optionals</a></li>
-<li><a href="../features/records/#task-2-implement-recursive-lists">Task 2: implement recursive lists</a></li>
-<li><a href="../features/records/#task-3-solve-advent-of-code-task">Task 3: solve advent of code task</a></li>
-<li><a href="../features/instanceof/#task-4-expand-recursive-lists">Task 4: expand recursive lists</a></li>
-<li><a href="../features/switchpatterns/#task-5-refactor-recursive-lists">Task 5: refactor recursive lists</a></li>
-<li><a href="../features/switchpatterns/#task-6-refactor-aoc-solution">Task 6: refactor AoC solution</a></li>
-</ul>
+<p><a href="https://openjdk.java.net/jeps/378">Text Blocks</a>
+provide a new way to write string literals in Java.
+They have nothing to do with algebraic datatypes or pattern matching,
+but we mention them anyway to complete our tour
+of new language features in Java 17 introduced by
+<a href="https://openjdk.java.net/projects/amber/">Project Amber</a>
+since the previous LTS release.</p>
+<p>Here is a definition from my solution to the
+<a href="../records/#task-3-solve-advent-of-code-task">Advent of Code task</a>
+that uses a text block for the example input.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">static</span> Stream<span style="color:#f92672">&lt;</span>Command<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">exampleInput</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span>
+            <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">            forward 5
+</span><span style="color:#e6db74">            down 5
+</span><span style="color:#e6db74">            forward 8
+</span><span style="color:#e6db74">            up 3
+</span><span style="color:#e6db74">            down 8
+</span><span style="color:#e6db74">            forward 2
+</span><span style="color:#e6db74">            &#34;&#34;&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lines</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Command<span style="color:#f92672">::</span>parse<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Text blocks allow to write multi-line strings
+without escape sequences and string concatenation.
+They are delimited by <code>&quot;&quot;&quot;</code> and can contain <code>&quot;</code> characters without escaping them.
+Incidental whitespace is stripped from the beginnings of all lines automatically.
+It is basically the longest common whitespace prefix of all lines in the text block.</p>
+<p>A new escape sequence consisting of <code>\</code> and a line terminator
+can be used in text blocks to avoid introducing newline characters.
+The new escape sequence <code>\s</code> for a space character can be used
+at the end of lines in text blocks
+to create lines with spaces at the end.
+Trailing whitespace characters that are not written using escape sequences
+will be removed automatically.</p>
+<p>Text blocks can be concatenated just like normal strings,
+but doing that gets unwieldy quickly.
+Instead of string concatenation,
+programmers can use value substitution using the static method <code>String.format</code>
+or the new equivalent instance method <code>String.formatted</code>.</p>
 </article>
  
       

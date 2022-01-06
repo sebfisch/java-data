@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Pattern Matching #  Pattern matching provides a way to inspect algebraic datatypes and access the components of their variants.
-Matching for enum types #  The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
+Branching on enum types #  The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
 asHexString(RED) -&gt; &quot;#ff0000&quot; asHexString(GREEN) -&gt; &quot;#00ff00&quot; asHexString(BLUE) -&gt; &quot;#0000ff&quot; BaseColor was defined as an enum type, so we can use a switch statement to implement an asHexString method.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Pattern Matching" />
 <meta property="og:description" content="Pattern Matching #  Pattern matching provides a way to inspect algebraic datatypes and access the components of their variants.
-Matching for enum types #  The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
+Branching on enum types #  The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
 asHexString(RED) -&gt; &quot;#ff0000&quot; asHexString(GREEN) -&gt; &quot;#00ff00&quot; asHexString(BLUE) -&gt; &quot;#0000ff&quot; BaseColor was defined as an enum type, so we can use a switch statement to implement an asHexString method." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/background/patterns/" /><meta property="article:section" content="docs" />
@@ -192,6 +192,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/textblocks/" class="">Text Blocks</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -285,9 +298,9 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#matching-for-enum-types">Matching for enum types</a></li>
-    <li><a href="#matching-for-sum-types">Matching for sum types</a></li>
-    <li><a href="#matching-for-product-types">Matching for product types</a></li>
+    <li><a href="#branching-on-enum-types">Branching on enum types</a></li>
+    <li><a href="#branching-on-sum-types">Branching on sum types</a></li>
+    <li><a href="#deconstructing-product-types">Deconstructing product types</a></li>
   </ul>
 </nav>
 
@@ -306,9 +319,9 @@ https://github.com/alex-shpak/hugo-book
 </h1>
 <p>Pattern matching provides a way to inspect algebraic datatypes
 and access the components of their variants.</p>
-<h2 id="matching-for-enum-types">
-  Matching for enum types
-  <a class="anchor" href="#matching-for-enum-types">#</a>
+<h2 id="branching-on-enum-types">
+  Branching on enum types
+  <a class="anchor" href="#branching-on-enum-types">#</a>
 </h2>
 <p>The following pseudo code
 describes the behavior of a function <code>asHexString</code>
@@ -336,9 +349,9 @@ We need to include an unreachable default case
 to satisfy the compiler which
 (with this definition)
 does not detect that all cases are handled.</p>
-<h2 id="matching-for-sum-types">
-  Matching for sum types
-  <a class="anchor" href="#matching-for-sum-types">#</a>
+<h2 id="branching-on-sum-types">
+  Branching on sum types
+  <a class="anchor" href="#branching-on-sum-types">#</a>
 </h2>
 <p>What if the argument type of the function is not an enum type?
 At least in pseudo code, we can still use pattern matching
@@ -400,9 +413,9 @@ it also has several disadvantages:</p>
 <li>It is cumbersome to access a present value because of a required type cast.</li>
 <li>The compiler cannot detect if we have handled all possible cases.</li>
 </ul>
-<h2 id="matching-for-product-types">
-  Matching for product types
-  <a class="anchor" href="#matching-for-product-types">#</a>
+<h2 id="deconstructing-product-types">
+  Deconstructing product types
+  <a class="anchor" href="#deconstructing-product-types">#</a>
 </h2>
 <p>Apart from distinguishing different possible variants of matched values,
 pattern matching is also used to access components of combined values.
@@ -506,9 +519,9 @@ by
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#matching-for-enum-types">Matching for enum types</a></li>
-    <li><a href="#matching-for-sum-types">Matching for sum types</a></li>
-    <li><a href="#matching-for-product-types">Matching for product types</a></li>
+    <li><a href="#branching-on-enum-types">Branching on enum types</a></li>
+    <li><a href="#branching-on-sum-types">Branching on sum types</a></li>
+    <li><a href="#deconstructing-product-types">Deconstructing product types</a></li>
   </ul>
 </nav>
 

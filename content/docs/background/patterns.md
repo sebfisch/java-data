@@ -8,7 +8,7 @@ weight: 14
 Pattern matching provides a way to inspect algebraic datatypes
 and access the components of their variants.
 
-## Matching for enum types
+## Branching on enum types
 
 The following pseudo code
 describes the behavior of a function `asHexString`
@@ -45,7 +45,7 @@ to satisfy the compiler which
 (with this definition)
 does not detect that all cases are handled.
 
-## Matching for sum types
+## Branching on sum types
 
 What if the argument type of the function is not an enum type?
 At least in pseudo code, we can still use pattern matching 
@@ -119,7 +119,7 @@ it also has several disadvantages:
   * It is cumbersome to access a present value because of a required type cast.
   * The compiler cannot detect if we have handled all possible cases.
 
-## Matching for product types
+## Deconstructing product types
 
 Apart from distinguishing different possible variants of matched values,
 pattern matching is also used to access components of combined values.

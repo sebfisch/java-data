@@ -174,6 +174,8 @@ should always match and, therefore, also match `null`.
 Note that the type pattern in the guarded patterns do not match `null`.
 If they did, we would get an exception when evaluating the condition.
 
+Next, we look at [Record Patterns](../recordpatterns).
+
 ## Task 6: refactor AoC solution
 
 Refactor your solution the the

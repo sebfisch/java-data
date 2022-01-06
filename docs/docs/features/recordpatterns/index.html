@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Record Patterns #  ">
+<meta name="description" content="Record Patterns #  Record Patterns are not available in Java 17. We briefly mention them anyway because they represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
+With appropriate definitions for three-argument functions min and max, we could1 implement a saturation method for RGBColor values as follows.
+public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) &amp;&amp; max(r,g,b) == 0 -&gt; 0; case RGBColor(var r, var g, var b) -&gt; (max(r,g,b) - min(r,g,b)) / max(r,g,b); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Record Patterns" />
-<meta property="og:description" content="Record Patterns #  " />
+<meta property="og:description" content="Record Patterns #  Record Patterns are not available in Java 17. We briefly mention them anyway because they represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
+With appropriate definitions for three-argument functions min and max, we could1 implement a saturation method for RGBColor values as follows.
+public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) &amp;&amp; max(r,g,b) == 0 -&gt; 0; case RGBColor(var r, var g, var b) -&gt; (max(r,g,b) - min(r,g,b)) / max(r,g,b); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/recordpatterns/" /><meta property="article:section" content="docs" />
 
@@ -188,6 +192,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://sebfisch.github.io/java-data/docs/features/textblocks/" class="">Text Blocks</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -294,6 +311,50 @@ https://github.com/alex-shpak/hugo-book
   Record Patterns
   <a class="anchor" href="#record-patterns">#</a>
 </h1>
+<p><a href="https://openjdk.java.net/jeps/405">Record Patterns</a>
+are not available in Java 17.
+We briefly mention them anyway
+because they represent an important aspect of pattern matching
+discussed in the background section:
+<a href="../../background/patterns/#deconstructing-product-types">deconstructing product types</a>.</p>
+<p>With appropriate definitions for three-argument functions <code>min</code> and <code>max</code>,
+we could<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> implement a <code>saturation</code> method for <code>RGBColor</code> values as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">saturation</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> RGBColor<span style="color:#f92672">(</span>var r<span style="color:#f92672">,</span> var g<span style="color:#f92672">,</span> var b<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> 0
+                <span style="color:#f92672">-&gt;</span> 0<span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> RGBColor<span style="color:#f92672">(</span>var r<span style="color:#f92672">,</span> var g<span style="color:#f92672">,</span> var b<span style="color:#f92672">)</span>
+                <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">(</span>max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">)</span> <span style="color:#f92672">-</span> min<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">))</span> <span style="color:#f92672">/</span> max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">);</span>
+        <span style="color:#f92672">};</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>In this definition, <code>RGBColor(var r, var g, var b)</code> is a record pattern
+introducing pattern variables <code>r</code>, <code>g</code>, and <code>b</code>
+which are bound to the values of the corresponding record fields
+<code>red</code>, <code>green</code>, and <code>blue</code> of the matched <code>RGBColor</code> value.</p>
+<p>The ability to deconstruct records directly inside a pattern
+would also be useful to simplify the definitions
+of our default methods for optional values and recursive lists
+because we would not have to introduce the variable <code>self</code>.</p>
+<p>Record patterns will be applicable in <code>switch</code> constructs
+as well as <code>instanceof</code> checks.
+In more complex scenarios they can be nested
+to deconstruct deeply nested values.
+In the example above,
+the nested patterns are expressed using
+<a href="https://openjdk.java.net/jeps/286">Local-Variable Type Inference</a>
+without mentioning corresponding types explicitly.</p>
+<p>In addition to record patterns, array patterns will be introduced
+to provide the ability to deconstruct arrays.</p>
+<p>In the final section, we introduce <a href="../textblocks">Text Blocks</a>.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>We may have to change the types of the fields to integral values
+because floats and doubles cannot be inspected in <code>switch</code> constructs.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
 </article>
  
       

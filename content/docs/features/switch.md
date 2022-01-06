@@ -30,7 +30,7 @@ even when no default clause is given.
 ## Arrow labels
 
 We can rewrite the `BaseColor.asHexString` method from a
-[previous section](../../background/patterns/#matching-for-enum-types)
+[previous section](../../background/patterns/#branching-on-enum-types)
 using a `switch` expression with arrow labels.
 
 ```java

@@ -26,9 +26,12 @@ in order of appearance.
   * [Sealed Classes](https://openjdk.java.net/jeps/409)
   * [Records](https://openjdk.java.net/jeps/395)
   * [Stream](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html)
+  * [Method References](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html)
   * [Advent of Code 2021, Day 2](https://adventofcode.com/2021/day/2)
   * [Pattern Matching for `instanceof`](https://openjdk.java.net/jeps/394)
   * [Predicate](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html)
   * [Switch Expressions](https://openjdk.java.net/jeps/361)
   * [Pattern matching for `switch`](https://openjdk.java.net/jeps/406)
-
+  * [Record Patterns](https://openjdk.java.net/jeps/405)
+  * [Local-Variable Type Inference](https://openjdk.java.net/jeps/286)
+  * [Text Blocks](https://openjdk.java.net/jeps/378)
