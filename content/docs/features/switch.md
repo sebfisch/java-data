@@ -80,7 +80,7 @@ when new enum values are added.
 
 The new `yield` statement can be used to write `switch` expressions
 with blocks in their branches.
-Traditional `case` labels are always followed by a block,
+Traditional `case` labels are always followed by statements,
 so `yield` is necessary to define a `switch` expression 
 with fall-through behavior.
 Here is an alternative definition of `describe`
@@ -101,8 +101,7 @@ using fall-through behavior and `yield`.
 We do not need a default case in an exhaustive `switch` expression,
 even if it uses traditional `case` labels.
 In `switch` expressions with arrow labels, we can also use blocks,
-for example, for intermediate computations,
-but they have to be enclosed in curly braces.
+for example, for intermediate computations.
 The following version of `describe` uses `yield` in a block
 for a `case` branch with an arrow label.
 

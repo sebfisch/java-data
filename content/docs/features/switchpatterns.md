@@ -115,7 +115,7 @@ Make sure that your tests still pass after your refactoring.
 
 Traditional `switch` constructs throw a `NullPointerException`
 when inspecting the `null` value.
-The new `switch` constructs retains this behavior in some cases.
+The new `switch` construct retains this behavior in some cases.
 As an example, consider the following function on `RGBColor` values.
 
 ```java

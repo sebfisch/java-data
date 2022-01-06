@@ -34,8 +34,9 @@ that uses a text block for the example input.
 Text blocks allow to write multi-line strings 
 without escape sequences and string concatenation.
 They are delimited by `"""` and can contain `"` characters without escaping them.
-Incidental whitespace is stripped from the beginnings of all lines automatically.
-It is basically the longest common whitespace prefix of all lines in the text block.
+Incidental whitespace,
+which is the longest common whitespace prefix of all lines in the text block,
+is stripped from the beginnings of all lines automatically.
 
 A new escape sequence consisting of `\` and a line terminator 
 can be used in text blocks to avoid introducing newline characters.

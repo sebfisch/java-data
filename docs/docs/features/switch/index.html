@@ -381,7 +381,7 @@ when new enum values are added.</p>
 </h2>
 <p>The new <code>yield</code> statement can be used to write <code>switch</code> expressions
 with blocks in their branches.
-Traditional <code>case</code> labels are always followed by a block,
+Traditional <code>case</code> labels are always followed by statements,
 so <code>yield</code> is necessary to define a <code>switch</code> expression
 with fall-through behavior.
 Here is an alternative definition of <code>describe</code>
@@ -398,8 +398,7 @@ using fall-through behavior and <code>yield</code>.</p>
 </code></pre></div><p>We do not need a default case in an exhaustive <code>switch</code> expression,
 even if it uses traditional <code>case</code> labels.
 In <code>switch</code> expressions with arrow labels, we can also use blocks,
-for example, for intermediate computations,
-but they have to be enclosed in curly braces.
+for example, for intermediate computations.
 The following version of <code>describe</code> uses <code>yield</code> in a block
 for a <code>case</code> branch with an arrow label.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>

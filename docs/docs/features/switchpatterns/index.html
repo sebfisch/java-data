@@ -421,7 +421,7 @@ Make sure that your tests still pass after your refactoring.</p>
 </h2>
 <p>Traditional <code>switch</code> constructs throw a <code>NullPointerException</code>
 when inspecting the <code>null</code> value.
-The new <code>switch</code> constructs retains this behavior in some cases.
+The new <code>switch</code> construct retains this behavior in some cases.
 As an example, consider the following function on <code>RGBColor</code> values.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>RGBColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
