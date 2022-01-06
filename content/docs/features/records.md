@@ -91,8 +91,7 @@ they can implement interfaces and inherit their default methods.
 ### Task 1: add null check for optionals
 
 Provide an explicit constructor for `Optional.Present`
-that rejects passed `null` values
-by throwing an `IllegalArgumentException`.
+that rejects passed `null` values by throwing an exception.
 Add an additional test to `OptionalTests`
 that checks that the null check works as intended.
 
