@@ -176,7 +176,9 @@ If they did, we would get an exception when evaluating the condition.
 
 ## Task 6: refactor AoC solution
 
-Refactor your solution the the
+Refactor your solution
+(or [mine](https://github.com/sebfisch/java-data-code/blob/solutions/src/main/java/sebfisch/aoc21/day02/Position.java)) 
+of the
 [Advent of Code task](../records/#task-3-solve-advent-of-code-task)
 to use pattern matching for `instanceof` or `switch` expressions.
 Check your IDE for code cleanup operations related to the new Java features,
