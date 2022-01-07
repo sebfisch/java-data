@@ -19,7 +19,7 @@ we could[^double] implement a `saturation` method for `RGBColor` values as follo
 [^double]: We may have to change the types of the fields to integral values 
 because floats and doubles cannot yet be inspected in `switch` constructs.
 However, allowing floats and doubles is planned as future work
-and might be available in when record patterns are released.
+and might be available when record patterns are released.
 
 ```java
     public double saturation() {
