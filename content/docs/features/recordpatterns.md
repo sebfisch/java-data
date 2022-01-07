@@ -17,7 +17,9 @@ With appropriate definitions for three-argument functions `min` and `max`,
 we could[^double] implement a `saturation` method for `RGBColor` values as follows.
 
 [^double]: We may have to change the types of the fields to integral values 
-because floats and doubles cannot be inspected in `switch` constructs.
+because floats and doubles cannot yet be inspected in `switch` constructs.
+However, allowing floats and doubles is planned as future work
+and might be available in when record patterns are released.
 
 ```java
     public double saturation() {
