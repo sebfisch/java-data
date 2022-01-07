@@ -40,10 +40,9 @@ public enum BaseColor {
 
 The different cases in the switch statement correspond to the different clauses
 in the preceding description.
-We need to include an unreachable default case
-to satisfy the compiler which
-(with this definition)
-does not detect that all cases are handled.
+We include an unreachable default case
+to satisfy the compiler which otherwise
+does not detect that all successful paths lead to a `return` statement.
 
 ## Branching on sum types
 

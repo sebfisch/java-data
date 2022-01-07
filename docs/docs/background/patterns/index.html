@@ -345,10 +345,9 @@ so we can use a switch statement to implement an <code>asHexString</code> method
 <span style="color:#f92672">}</span>
 </code></pre></div><p>The different cases in the switch statement correspond to the different clauses
 in the preceding description.
-We need to include an unreachable default case
-to satisfy the compiler which
-(with this definition)
-does not detect that all cases are handled.</p>
+We include an unreachable default case
+to satisfy the compiler which otherwise
+does not detect that all successful paths lead to a <code>return</code> statement.</p>
 <h2 id="branching-on-sum-types">
   Branching on sum types
   <a class="anchor" href="#branching-on-sum-types">#</a>

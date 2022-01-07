@@ -12,7 +12,7 @@ Switch expressions are introduced together with arrow labels, which is an indepe
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switch/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-06T01:08:57+01:00" />
+<meta property="article:modified_time" content="2022-01-06T15:06:20+01:00" />
 
 <title>Switch Expressions | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -369,10 +369,11 @@ rather than expressions.</p>
     <span style="color:#f92672">}</span>
 </code></pre></div><p>The second case lists two enum values
 because arrow labels do not provide fall-through behavior.
-Unlike in <code>switch</code> expressions,
-we have to include a default case in <code>switch</code> statements
-also when using arrow labels,
-even if it is unreachable.
+Unlike in the <code>switch</code> expression above,
+we include a default case in this <code>switch</code> statement,
+although it is unreachable,
+to convice the compiler
+that every successful path leads to a <code>return</code> statement.
 As a result, the compiler cannot warn us about missing cases,
 when new enum values are added.</p>
 <h2 id="yield-statement">

@@ -69,10 +69,11 @@ rather than expressions.
 
 The second case lists two enum values 
 because arrow labels do not provide fall-through behavior.
-Unlike in `switch` expressions,
-we have to include a default case in `switch` statements
-also when using arrow labels,
-even if it is unreachable.
+Unlike in the `switch` expression above,
+we include a default case in this `switch` statement,
+although it is unreachable,
+to convice the compiler 
+that every successful path leads to a `return` statement.
 As a result, the compiler cannot warn us about missing cases,
 when new enum values are added.
 
