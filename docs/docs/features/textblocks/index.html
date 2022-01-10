@@ -319,17 +319,17 @@ since the previous LTS release.</p>
 <p>Here is a definition from my solution to the
 <a href="../records/#task-3-solve-advent-of-code-task">Advent of Code task</a>
 that uses a text block for the example input.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">static</span> Stream<span style="color:#f92672">&lt;</span>Command<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">exampleInput</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">return</span>
-            <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">            forward 5
-</span><span style="color:#e6db74">            down 5
-</span><span style="color:#e6db74">            forward 8
-</span><span style="color:#e6db74">            up 3
-</span><span style="color:#e6db74">            down 8
-</span><span style="color:#e6db74">            forward 2
-</span><span style="color:#e6db74">            &#34;&#34;&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lines</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Command<span style="color:#f92672">::</span>parse<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> Stream<span style="color:#f92672">&lt;</span>Command<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">exampleInput</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span>
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        forward 5
+</span><span style="color:#e6db74">        down 5
+</span><span style="color:#e6db74">        forward 8
+</span><span style="color:#e6db74">        up 3
+</span><span style="color:#e6db74">        down 8
+</span><span style="color:#e6db74">        forward 2
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lines</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Command<span style="color:#f92672">::</span>parse<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><p>Text blocks allow to write multi-line strings
 without escape sequences and string concatenation.
 They are delimited by <code>&quot;&quot;&quot;</code> and can contain <code>&quot;</code> characters without escaping them.

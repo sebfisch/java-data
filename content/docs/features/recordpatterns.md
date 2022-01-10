@@ -22,14 +22,14 @@ However, allowing floats and doubles is planned as future work
 and might be available when record patterns are released.
 
 ```java
-    public double saturation() {
-        return switch (this) {
-            case RGBColor(var r, var g, var b) && max(r,g,b) == 0
-                -> 0;
-            case RGBColor(var r, var g, var b)
-                -> (max(r,g,b) - min(r,g,b)) / max(r,g,b);
-        };
-    }
+public double saturation() {
+    return switch (this) {
+        case RGBColor(var r, var g, var b) && max(r,g,b) == 0
+            -> 0;
+        case RGBColor(var r, var g, var b)
+            -> (max(r,g,b) - min(r,g,b)) / max(r,g,b);
+    };
+}
 ```
 
 In this definition, `RGBColor(var r, var g, var b)` is a record pattern

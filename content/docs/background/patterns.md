@@ -144,22 +144,21 @@ we can access the private fields `red`, `green`, and `blue`
 storing the different color components.
 
 ```java
-    public double saturation() {
-        final double max = Math.max(red, Math.max(green, blue));
+public double saturation() {
+    final double max = Math.max(red, Math.max(green, blue));
 
-        if (max == 0) {
-            return 0;
-        }
-
-        final double min = Math.min(red, Math.min(green, blue));
-
-        return (max - min) / max;
+    if (max == 0) {
+        return 0;
     }
+
+    final double min = Math.min(red, Math.min(green, blue));
+
+    return (max - min) / max;
+}
 ```
 
 When matching values of product types that are variants of a sum type
-we might want to match a combined value outside of its defining class
-like in our `map` function for optional values.
+we might want to match a combined value outside of its defining class.
 In that case, the fields `red`, `green`, and `blue` would not be available,
 and we would have to use corresponding methods to access them.
 
@@ -181,18 +180,18 @@ we can handle all cases in one place
 and access the private fields for the head and tail of a populated list.
 
 ```java
-    default <U> BasicRecursiveList<U> map(Function<T,U> fun) {
-        if (this instanceof Empty) {
-            return new Empty<>();
-        }
-
-        if (this instanceof Populated) {
-            final Populated<T> self = (Populated<T>) this;
-            return new Populated<>(fun.apply(self.head), self.tail.map(fun));
-        }
-
-        throw new IllegalStateException("neither empty nor populated");
+default <U> BasicRecursiveList<U> map(Function<T,U> fun) {
+    if (this instanceof Empty) {
+        return new Empty<>();
     }
+
+    if (this instanceof Populated) {
+        final Populated<T> self = (Populated<T>) this;
+        return new Populated<>(fun.apply(self.head), self.tail.map(fun));
+    }
+
+    throw new IllegalStateException("neither empty nor populated");
+}
 ```
 
 Again, this implementation is cumbersome because of a required type cast

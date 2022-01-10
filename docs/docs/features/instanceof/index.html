@@ -325,13 +325,13 @@ helps to avoid type casts when we know that they succeed.</p>
 </h2>
 <p>For example, we can use this feature
 to simplify the definition of <code>map</code> for optional values.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
     <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><p>Here, the condition using <code>instanceof</code> introduces a variable <code>self</code>
 of type <code>Optional.Present&lt;T&gt;</code> so we do not need to cast <code>this</code> explicitly.</p>
 <h2 id="flow-scoping">
@@ -343,13 +343,13 @@ As a consequence, <code>self</code> is in scope
 where the compiler can guarantee that the <code>instanceof</code> check is successful.</p>
 <p>Here is an alternative definition of <code>map</code> for optional values
 that demonstrates flow scoping.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
-        <span style="color:#f92672">}</span>
-        
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
     <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><p>The condition is now negated, and as a result
 <code>self</code> is in scope after the <code>if</code> statement
 where we only get if its condition is <code>false</code>
@@ -368,13 +368,13 @@ the optional value is returned unchanged.
 In all other cases the result of <code>filter</code> is <code>Empty</code>.</p>
 <p>We can define this function as a default method for <code>Optional</code>
 by using an <code>instanceof</code> check with a pattern variable.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> pred<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">&amp;&amp;</span> pred<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> pred<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">&amp;&amp;</span> pred<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><p>Note that due to flow scoping,
 the pattern variable <code>self</code> is in scope in the second argument of <code>&amp;&amp;</code>
 because this part of the condition is only executed

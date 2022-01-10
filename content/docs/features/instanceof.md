@@ -14,13 +14,13 @@ For example, we can use this feature
 to simplify the definition of `map` for optional values.
 
 ```java
-    default <U> Optional<U> map(Function<T, U> fun) {
-        if (this instanceof Present<T> self) {
-            return new Present<>(fun.apply(self.value));
-        }
-
-        return new Empty<>();
+default <U> Optional<U> map(Function<T, U> fun) {
+    if (this instanceof Present<T> self) {
+        return new Present<>(fun.apply(self.value));
     }
+
+    return new Empty<>();
+}
 ```
 
 Here, the condition using `instanceof` introduces a variable `self`
@@ -36,13 +36,13 @@ Here is an alternative definition of `map` for optional values
 that demonstrates flow scoping.
 
 ```java
-    default <U> Optional<U> map(Function<T, U> fun) {
-        if (!(this instanceof Present<T> self)) {
-            return new Empty<>();
-        }
-        
-        return new Present<>(fun.apply(self.value));
+default <U> Optional<U> map(Function<T, U> fun) {
+    if (!(this instanceof Present<T> self)) {
+        return new Empty<>();
     }
+    
+    return new Present<>(fun.apply(self.value));
+}
 ```
 
 The condition is now negated, and as a result 
@@ -71,13 +71,13 @@ We can define this function as a default method for `Optional`
 by using an `instanceof` check with a pattern variable.
 
 ```java
-    default Optional<T> filter(Predicate<T> pred) {
-        if (this instanceof Present<T> self && pred.test(self.value)) {
-            return this;
-        }
-
-        return new Empty<>();
+default Optional<T> filter(Predicate<T> pred) {
+    if (this instanceof Present<T> self && pred.test(self.value)) {
+        return this;
     }
+
+    return new Empty<>();
+}
 ```
 
 Note that due to flow scoping, 

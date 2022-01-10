@@ -34,12 +34,12 @@ We can use them to further improve the implementation
 of our `map` function for optional values.
 
 ```java
-    default <U> Optional<U> map(Function<T, U> fun) {
-        return switch (this) {
-            case Empty<T> self -> new Empty<>();
-            case Present<T> self -> new Present<>(fun.apply(self.value));
-        };
-    }
+default <U> Optional<U> map(Function<T, U> fun) {
+    return switch (this) {
+        case Empty<T> self -> new Empty<>();
+        case Present<T> self -> new Present<>(fun.apply(self.value));
+    };
+}
 ```
 
 This implementation is an improvement over the one using `instanceof`
@@ -55,8 +55,8 @@ When using patterns in `switch` statements,
 they are also required to be exhaustive (like `switch` expressions.)
 For backwards compatibility,
 this requirement is not extended to traditional switch statements,
-but, in the future,
-compilers may generate a warning for incomplete traditional `switch` statements.
+but compilers may generate a warning 
+for incomplete traditional `switch` statements.
 
 ## Guarded patterns
 
@@ -65,13 +65,13 @@ is determined using flow scoping just like with `instanceof`.
 Here is an improved implementation of the `filter` function for optional values.
 
 ```java
-    default Optional<T> filter(Predicate<T> pred) {
-        return switch (this) {
-            case Empty<T> self -> self;
-            case Present<T> self && pred.test(self.value) -> self;
-            case Present<T> self -> new Empty<>();
-        };
-    }
+default Optional<T> filter(Predicate<T> pred) {
+    return switch (this) {
+        case Empty<T> self -> self;
+        case Present<T> self && pred.test(self.value) -> self;
+        case Present<T> self -> new Empty<>();
+    };
+}
 ```
 
 Just like with `map`, we benefit from an exhaustiveness check by the compiler.
@@ -119,14 +119,14 @@ The new `switch` construct retains this behavior in some cases.
 As an example, consider the following function on `RGBColor` values.
 
 ```java
-    public static String describe(RGBColor color) {
-        return switch (color) {
-            case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
-            case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
-            case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
-            default -> "colorless";
-        };
-    }
+public static String describe(RGBColor color) {
+    return switch (color) {
+        case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
+        case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
+        case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
+        default -> "other";
+    };
+}
 ```
 
 This function uses multiple guarded patterns to determine a color tendency
@@ -134,36 +134,36 @@ and a default branch that matches if all color values are the same.
 The call `describe(null)` throws a `NullPointerException`,
 because the default branch does not match `null` for backwards compatibility.
 
-Here is an alternative definition that renders `null` values colorless.
+Here is an alternative definition that handles `null` values.
 
 ```java
-    public static String describe(RGBColor color) {
-        return switch (color) {
-            case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
-            case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
-            case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
-            case null, default -> "colorless";
-        };
-    }
+public static String describe(RGBColor color) {
+    return switch (color) {
+        case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
+        case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
+        case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
+        case null, default -> "other";
+    };
+}
 ```
 This definition uses a `null` pattern and the new `default` case label
 to handle both cases in a single branch.
-With this definition the call `describe(null)` returns `"colorless"`.
+With this definition the call `describe(null)` returns `"other"`.
 
 Here is an alternative implementation with the same behavior.
 
 ```java
-    public static String describe(RGBColor color) {
-        return switch (color) {
-            case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
-            case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
-            case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
-            case RGBColor c -> "colorless";
-        };
-    }
+public static String describe(RGBColor color) {
+    return switch (color) {
+        case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
+        case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
+        case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
+        case RGBColor c -> "other";
+    };
+}
 ```
 
-The result of the call `describe(null)` is `"colorless"`,
+The result of the call `describe(null)` is `"other"`,
 like with the previous definition using an explicit `null` pattern.
 
 While type patterns do not always match the `null` value, in this case,

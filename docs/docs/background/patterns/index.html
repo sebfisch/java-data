@@ -433,20 +433,19 @@ which are used to compute the result of the function <code>saturation</code>.</p
 <p>If we implement <code>saturation</code> as a method of <code>BasicRGBColor</code>
 we can access the private fields <code>red</code>, <code>green</code>, and <code>blue</code>
 storing the different color components.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">saturation</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> max <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>red<span style="color:#f92672">,</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>green<span style="color:#f92672">,</span> blue<span style="color:#f92672">));</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">saturation</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> max <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>red<span style="color:#f92672">,</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>green<span style="color:#f92672">,</span> blue<span style="color:#f92672">));</span>
 
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>max <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> min <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">min</span><span style="color:#f92672">(</span>red<span style="color:#f92672">,</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">min</span><span style="color:#f92672">(</span>green<span style="color:#f92672">,</span> blue<span style="color:#f92672">));</span>
-
-        <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>max <span style="color:#f92672">-</span> min<span style="color:#f92672">)</span> <span style="color:#f92672">/</span> max<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>max <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> 0<span style="color:#f92672">;</span>
     <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> min <span style="color:#f92672">=</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">min</span><span style="color:#f92672">(</span>red<span style="color:#f92672">,</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">min</span><span style="color:#f92672">(</span>green<span style="color:#f92672">,</span> blue<span style="color:#f92672">));</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>max <span style="color:#f92672">-</span> min<span style="color:#f92672">)</span> <span style="color:#f92672">/</span> max<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><p>When matching values of product types that are variants of a sum type
-we might want to match a combined value outside of its defining class
-like in our <code>map</code> function for optional values.
+we might want to match a combined value outside of its defining class.
 In that case, the fields <code>red</code>, <code>green</code>, and <code>blue</code> would not be available,
 and we would have to use corresponding methods to access them.</p>
 <p>As a final example we discuss the <code>map</code> function for recursive lists,
@@ -461,18 +460,18 @@ because it is called recursively on the tail of a populated list.
 When defining <code>map</code> as a default method in <code>BasicRecursiveList</code>
 we can handle all cases in one place
 and access the private fields for the head and tail of a populated list.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> BasicRecursiveList<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span>U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Empty<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Populated<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">final</span> Populated<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Populated<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Populated<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">head</span><span style="color:#f92672">),</span> self<span style="color:#f92672">.</span><span style="color:#a6e22e">tail</span><span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>fun<span style="color:#f92672">));</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;neither empty nor populated&#34;</span><span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> BasicRecursiveList<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span>U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Empty<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
     <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Populated<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">final</span> Populated<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Populated<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Populated<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">head</span><span style="color:#f92672">),</span> self<span style="color:#f92672">.</span><span style="color:#a6e22e">tail</span><span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>fun<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;neither empty nor populated&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
 </code></pre></div><p>Again, this implementation is cumbersome because of a required type cast
 and because the compiler cannot detect that we have handled all cases.</p>
 <p>This concludes the background section.

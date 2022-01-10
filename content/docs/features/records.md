@@ -109,18 +109,18 @@ so it does not clutter the namespace.
 Here is a static method inside `RGBColor` that demonstrates this technique.
 
 ```java
-    public static Optional<RGBColor> findBrightest(List<RGBColor> colors) {
-        record AugmentedColor(RGBColor color, double brightness) {
-            AugmentedColor(RGBColor color) {
-                this(color, (color.red + color.green + color.blue) / 3);
-            }
+public static Optional<RGBColor> findBrightest(List<RGBColor> colors) {
+    record AugmentedColor(RGBColor color, double brightness) {
+        AugmentedColor(RGBColor color) {
+            this(color, (color.red + color.green + color.blue) / 3);
         }
-
-        return colors.stream()
-                .map(AugmentedColor::new)
-                .max(Comparator.comparing(AugmentedColor::brightness))
-                .map(AugmentedColor::color);
     }
+
+    return colors.stream()
+            .map(AugmentedColor::new)
+            .max(Comparator.comparing(AugmentedColor::brightness))
+            .map(AugmentedColor::color);
+}
 ```
 
 The method `findBrightest` returns one of the brightest colors

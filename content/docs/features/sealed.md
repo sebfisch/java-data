@@ -61,14 +61,14 @@ Because we know all possible implementations of `SealedOptional`,
 we can simplify the definition of the `map` function.
 
 ```java
-    default <U> SealedOptional<U> map(Function<T,U> fun) {
-        if (this instanceof Present) {
-            final Present<T> self = (Present<T>) this;
-            return new Present<>(fun.apply(self.value));
-        }
-
-        return new Empty<>();
+default <U> SealedOptional<U> map(Function<T,U> fun) {
+    if (this instanceof Present) {
+        final Present<T> self = (Present<T>) this;
+        return new Present<>(fun.apply(self.value));
     }
+
+    return new Empty<>();
+}
 ```
 
 If the optional value is not present, we know that it must be empty
