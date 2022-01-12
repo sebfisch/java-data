@@ -184,5 +184,21 @@ to use pattern matching for `instanceof` or `switch` expressions.
 Check your IDE for code cleanup operations related to the new Java features,
 to see if it can help you with this task.
 
+Bonus: Extend the position with an aim attribute
+that is influenced by up- and down-commands 
+instead of influencing the depth directly:
+
+```
+pos.moveBy(Up(steps)):
+    pos.aim -= steps
+pos.moveBy(Down(steps)):
+    pos.aim += steps
+pos.moveBy(Forward(steps)):
+    pos.horizontal += steps
+    pos.depth += pos.aim * steps
+```
+
+The forward command now also affects the submarines depth based on its aim.
+
 To conclude the pattern-matching discussions,
 we look at [Record Patterns](../recordpatterns).

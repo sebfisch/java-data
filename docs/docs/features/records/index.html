@@ -12,7 +12,7 @@ Another feature introduced together with records are local definitions for recor
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/records/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-06T13:06:27+01:00" />
+<meta property="article:modified_time" content="2022-01-10T12:18:30+01:00" />
 
 <title>Records | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -465,8 +465,14 @@ which checks that the list implementation works as intended.</p>
 </h2>
 <p><a href="https://adventofcode.com/2021/day/2">Advent of Code 2021, Day 2</a>
 poses a task where the position of a submarine is adjusted
-based on a list of commands operating it.</p>
-<p>Solve the task
+based on a list of commands operating it:</p>
+<pre tabindex="0"><code>pos.moveBy(Up(steps)):
+    pos.depth -= steps
+pos.moveBy(Down(steps)):
+    pos.depth += steps
+pos.moveBy(Forward(steps)):
+    pos.horizontal += steps
+</code></pre><p>Solve the task
 by applying what you have learned about algebraic datatypes so far.
 Please refrain from using language features for pattern matching
 discussed later in this tutorial.

@@ -164,7 +164,16 @@ which checks that the list implementation works as intended.
 
 [Advent of Code 2021, Day 2](https://adventofcode.com/2021/day/2)
 poses a task where the position of a submarine is adjusted
-based on a list of commands operating it.
+based on a list of commands operating it:
+
+```
+pos.moveBy(Up(steps)):
+    pos.depth -= steps
+pos.moveBy(Down(steps)):
+    pos.depth += steps
+pos.moveBy(Forward(steps)):
+    pos.horizontal += steps
+```
 
 Solve the task 
 by applying what you have learned about algebraic datatypes so far.

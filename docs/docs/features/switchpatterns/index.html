@@ -14,7 +14,7 @@ Traditionally, switch statements can only inspect
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switchpatterns/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-07T11:12:26+01:00" />
+<meta property="article:modified_time" content="2022-01-10T12:18:30+01:00" />
 
 <title>Pattern Matching for switch | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
@@ -476,6 +476,17 @@ of the
 to use pattern matching for <code>instanceof</code> or <code>switch</code> expressions.
 Check your IDE for code cleanup operations related to the new Java features,
 to see if it can help you with this task.</p>
+<p>Bonus: Extend the position with an aim attribute
+that is influenced by up- and down-commands
+instead of influencing the depth directly:</p>
+<pre tabindex="0"><code>pos.moveBy(Up(steps)):
+    pos.aim -= steps
+pos.moveBy(Down(steps)):
+    pos.aim += steps
+pos.moveBy(Forward(steps)):
+    pos.horizontal += steps
+    pos.depth += pos.aim * steps
+</code></pre><p>The forward command now also affects the submarines depth based on its aim.</p>
 <p>To conclude the pattern-matching discussions,
 we look at <a href="../recordpatterns">Record Patterns</a>.</p>
 </article>
