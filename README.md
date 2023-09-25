@@ -3,12 +3,7 @@
 This repository contains the sources for the Tutorial:
 [Algebraic Datatypes and Pattern Matching in Java](https://sebfisch.github.io/java-data/).
 
-It references a [docker container](https://github.com/sebfisch/docker-wiki-dev)
-that can be used to
-write and generate the corresponding site.
-You can start the development environment using
-
-    # docker-compose run --rm --service-ports dev
+It provides a docker container that can be used to write and generate the corresponding site.
 
 On first use you should clone submodules as follows.
 
@@ -18,7 +13,7 @@ Inside the container, you can start the development server using
 
     # hugo server --bind 0.0.0.0
 
-The site should then be available at localhost:1313.
+The site should then be available at [http://localhost:1313/java-data/].
 
 You can use your global git config in the container as follows.
 

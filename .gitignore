@@ -1,4 +1,2 @@
-*.swp
+.hugo_build.lock
 resources/_gen
-Session.vim
-
