@@ -4,7 +4,7 @@ RUN echo 'APT::Install-Suggests "0";' >> /etc/apt/apt.conf.d/00-docker
 RUN echo 'APT::Install-Recommends "0";' >> /etc/apt/apt.conf.d/00-docker
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-  apt-get -y install git hugo sudo
+  apt-get -y install git hugo openssh-client sudo
 
 ARG USER=me
 ENV USER=$USER
