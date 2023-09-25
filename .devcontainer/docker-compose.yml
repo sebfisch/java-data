@@ -7,12 +7,12 @@ services:
     build:
       context: "."
       # Adjust the build args to reflect your local setup
-      args:
-        HOME: /home/me
-        USER: me
-        UID: 1000
-        GROUP: me
-        GID: 1000
+      # args:
+      #   HOME: /home/me
+      #   USER: me
+      #   UID: 1000
+      #   GROUP: me
+      #   GID: 1000
     hostname: wiki-dev
     environment:
       # Adjust to reflect your own timezone
