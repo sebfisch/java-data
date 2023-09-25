@@ -19,7 +19,7 @@ You can run `hugo` without additional arguments to generate the site inside the 
 
 You can use your global git config in the container as follows.
 
-    # cp ~/.gitconfig .git/config
+    # cat ~/.gitconfig >> .git/config
 
 Your ssh keys are mounted into the container automatically.
 If that does not work or you have permission issues
