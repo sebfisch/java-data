@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Switch Expressions #  Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
+<meta name="description" content="Switch Expressions # Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
 Switch expressions are introduced together with arrow labels, which is an independent feature for alternativ control flow. Unlike the traditional fall-through behavior, switch constructs with arrow labels execute only one of their cases.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Switch Expressions" />
-<meta property="og:description" content="Switch Expressions #  Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
+<meta property="og:description" content="Switch Expressions # Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
 Switch expressions are introduced together with arrow labels, which is an independent feature for alternativ control flow. Unlike the traditional fall-through behavior, switch constructs with arrow labels execute only one of their cases." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/switch/" /><meta property="article:section" content="docs" />
 
 <meta property="article:modified_time" content="2022-01-10T12:18:30+01:00" />
-
 <title>Switch Expressions | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
 <link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
@@ -265,7 +264,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -341,14 +340,14 @@ even when no default clause is given.</p>
 <p>We can rewrite the <code>BaseColor.asHexString</code> method from a
 <a href="../../background/patterns/#branching-on-enum-types">previous section</a>
 using a <code>switch</code> expression with arrow labels.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">asHexString</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">case</span> RED <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#ff0000&#34;</span><span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">case</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#00ff00&#34;</span><span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#0000ff&#34;</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">};</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Unlike the previous version, this definition does not need a default case,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">asHexString</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> RED <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#ff0000&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#00ff00&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;#0000ff&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Unlike the previous version, this definition does not need a default case,
 because the compiler detects that all possible cases are handled.
 While adding an unreachable default case would still be possible,
 it is not advisable,
@@ -356,18 +355,18 @@ because the compiler would not warn us
 when new enum values are added without adjusting the definition of <code>asHexString</code>.</p>
 <p>Arrow labels can also be used with <code>switch</code> statements,
 rather than expressions.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">,</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-        <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ends with vowel&#34;</span><span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-        <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unreachable&#34;</span><span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>The second case lists two enum values
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">,</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ends with vowel&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unreachable&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>The second case lists two enum values
 because arrow labels do not provide fall-through behavior.
 Unlike in the <code>switch</code> expression above,
 we include a default case in this <code>switch</code> statement,
@@ -387,31 +386,31 @@ so <code>yield</code> is necessary to define a <code>switch</code> expression
 with fall-through behavior.
 Here is an alternative definition of <code>describe</code>
 using fall-through behavior and <code>yield</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">:</span>
-        <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">:</span>
-            yield <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">case</span> BLUE<span style="color:#f92672">:</span>
-            yield <span style="color:#e6db74">&#34;ends with vowel&#34;</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">};</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>We do not need a default case in an exhaustive <code>switch</code> expression,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> GREEN<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            yield <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> BLUE<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            yield <span style="color:#e6db74">&#34;ends with vowel&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>We do not need a default case in an exhaustive <code>switch</code> expression,
 even if it uses traditional <code>case</code> labels.
 In <code>switch</code> expressions with arrow labels, we can also use blocks,
 for example, for intermediate computations.
 The following version of <code>describe</code> uses <code>yield</code> in a block
 for a <code>case</code> branch with an arrow label.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">,</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">final</span> String result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ends&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; with &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;vowel&#34;</span><span style="color:#f92672">;</span>
-            yield result<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">};</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>The
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">describe</span><span style="color:#f92672">(</span>BaseColor color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> RED<span style="color:#f92672">,</span> GREEN <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;ends with consonant&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> BLUE <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">final</span> String result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ends&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; with &#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;vowel&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            yield result<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>The
 <a href="https://github.com/sebfisch/java-data-code/blob/latest/src/main/java/sebfisch/colors/BaseColor.java">source code</a>
 for <code>BaseColor</code> contains even more variants of the <code>describe</code> function
 including the canonical one using a <code>switch</code> expression with arrow labels
@@ -435,14 +434,12 @@ which is another extension of the <code>switch</code> construct.</p>
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  
         <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
-  >&copy; 2022</a>
-by
-<a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
+  >&copy; Sebastian Fischer</a>
 
       </footer>
 

@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+<meta name="description" content="Sealed Classes # Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
 Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Sealed Classes" />
-<meta property="og:description" content="Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+<meta property="og:description" content="Sealed Classes # Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
 Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/sealed/" /><meta property="article:section" content="docs" />
 
 <meta property="article:modified_time" content="2022-01-10T12:18:30+01:00" />
-
 <title>Sealed Classes | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
 <link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
@@ -265,7 +264,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -336,24 +335,24 @@ make the check impossible to succeed.</p>
   <a class="anchor" href="#optional-values">#</a>
 </h2>
 <p>Here is an adjusted definition for optional values using a sealed interface.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> sealed <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SealedOptional</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
-    permits SealedOptional<span style="color:#f92672">.</span><span style="color:#a6e22e">Empty</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;,</span> SealedOptional<span style="color:#f92672">.</span><span style="color:#a6e22e">Present</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Empty</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> SealedOptional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{}</span>
-
-    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Present</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> SealedOptional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> T value<span style="color:#f92672">;</span>
-
-        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Present</span><span style="color:#f92672">(</span>T value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> value<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-
-        <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">value</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">return</span> value<span style="color:#f92672">;</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>This definition resembles the previous one with the following differences:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> sealed <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SealedOptional</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    permits SealedOptional<span style="color:#f92672">.</span><span style="color:#a6e22e">Empty</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;,</span> SealedOptional<span style="color:#f92672">.</span><span style="color:#a6e22e">Present</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Empty</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> SealedOptional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Present</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> SealedOptional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> T value<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Present</span><span style="color:#f92672">(</span>T value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> value<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">value</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> value<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>This definition resembles the previous one with the following differences:</p>
 <ul>
 <li>The <code>sealed</code> keyword marks the interface as sealed.</li>
 <li>The <code>permits</code> keyword starts a list of allowed implementations.</li>
@@ -361,15 +360,15 @@ make the check impossible to succeed.</p>
 </ul>
 <p>Because we know all possible implementations of <code>SealedOptional</code>,
 we can simplify the definition of the <code>map</code> function.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> SealedOptional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span>U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        <span style="color:#66d9ef">final</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
-    <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>If the optional value is not present, we know that it must be empty
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> SealedOptional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span>U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#66d9ef">instanceof</span> Present<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">final</span> Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> self <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Present<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;)</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>self<span style="color:#f92672">.</span><span style="color:#a6e22e">value</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>If the optional value is not present, we know that it must be empty
 and do not need to throw an <code>IllegalStateException</code> for other cases.</p>
 <h2 id="restrictions">
   Restrictions
@@ -398,15 +397,15 @@ the sub-class could be extended by arbitrary other classes
 breaking the seal of the super-class.</p>
 <p>We now look at <a href="../records">Records</a>
 which help to further simplify our definition of optional values.</p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p>They are not keywords but restricted identifiers,
 but we won&rsquo;t go into the details of this distinction.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 </article>
  
       
@@ -423,14 +422,12 @@ but we won&rsquo;t go into the details of this distinction.&#160;<a href="#fnref
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  
         <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
-  >&copy; 2022</a>
-by
-<a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
+  >&copy; Sebastian Fischer</a>
 
       </footer>
 

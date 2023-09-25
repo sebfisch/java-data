@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Text Blocks #  Text Blocks provide a new way to write string literals in Java. They have nothing to do with algebraic datatypes or pattern matching, but we mention them anyway to complete our tour of new language features in Java 17 introduced by Project Amber since the previous LTS release.
+<meta name="description" content="Text Blocks # Text Blocks provide a new way to write string literals in Java. They have nothing to do with algebraic datatypes or pattern matching, but we mention them anyway to complete our tour of new language features in Java 17 introduced by Project Amber since the previous LTS release.
 Here is a definition from my solution to the Advent of Code task that uses a text block for the example input.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Text Blocks" />
-<meta property="og:description" content="Text Blocks #  Text Blocks provide a new way to write string literals in Java. They have nothing to do with algebraic datatypes or pattern matching, but we mention them anyway to complete our tour of new language features in Java 17 introduced by Project Amber since the previous LTS release.
+<meta property="og:description" content="Text Blocks # Text Blocks provide a new way to write string literals in Java. They have nothing to do with algebraic datatypes or pattern matching, but we mention them anyway to complete our tour of new language features in Java 17 introduced by Project Amber since the previous LTS release.
 Here is a definition from my solution to the Advent of Code task that uses a text block for the example input." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/textblocks/" /><meta property="article:section" content="docs" />
 
 <meta property="article:modified_time" content="2022-01-10T12:18:30+01:00" />
-
 <title>Text Blocks | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
 <link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
@@ -265,7 +264,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -319,18 +318,18 @@ since the previous LTS release.</p>
 <p>Here is a definition from my solution to the
 <a href="../records/#task-3-solve-advent-of-code-task">Advent of Code task</a>
 that uses a text block for the example input.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> Stream<span style="color:#f92672">&lt;</span>Command<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">exampleInput</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">return</span>
-        <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">        forward 5
-</span><span style="color:#e6db74">        down 5
-</span><span style="color:#e6db74">        forward 8
-</span><span style="color:#e6db74">        up 3
-</span><span style="color:#e6db74">        down 8
-</span><span style="color:#e6db74">        forward 2
-</span><span style="color:#e6db74">        &#34;&#34;&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lines</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Command<span style="color:#f92672">::</span>parse<span style="color:#f92672">);</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Text blocks allow to write multi-line strings
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> Stream<span style="color:#f92672">&lt;</span>Command<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">exampleInput</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        forward 5
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        down 5
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        forward 8
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        up 3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        down 8
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        forward 2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lines</span><span style="color:#f92672">().</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Command<span style="color:#f92672">::</span>parse<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Text blocks allow to write multi-line strings
 without escape sequences and string concatenation.
 They are delimited by <code>&quot;&quot;&quot;</code> and can contain <code>&quot;</code> characters without escaping them.
 Incidental whitespace,
@@ -364,14 +363,12 @@ or the new equivalent instance method <code>String.formatted</code>.</p>
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  
         <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/" target="_blank"
-  >&copy; 2022</a>
-by
-<a href="http://twitter.com/sebfisch" target="_blank">Sebastian Fischer</a>
+  >&copy; Sebastian Fischer</a>
 
       </footer>
 
