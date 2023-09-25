@@ -13,7 +13,9 @@ Inside the container, you can start the development server using
 
     # hugo server --bind 0.0.0.0
 
-The site should then be available at [http://localhost:1313/java-data/].
+The site should then be available at http://localhost:1313/java-data/.
+
+You can run `hugo` without additional arguments to generate the site inside the `docs` folder.
 
 You can use your global git config in the container as follows.
 
