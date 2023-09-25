@@ -10,9 +10,9 @@ services:
       args:
         HOME: /home/me
         USER: me
-        UID: 501
+        UID: 1000
         GROUP: me
-        GID: 501
+        GID: 1000
     hostname: wiki-dev
     environment:
       # Adjust to reflect your own timezone
