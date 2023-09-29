@@ -12,9 +12,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/background/data/</guid>
-      <description>Algebraic Datatypes # Algebraic datatypes are a combination of sum types and product types which we discuss next.
-Sum types # Sum types are used to represent different variants of values. They are also called variant types or tagged union types. A simple example of a sum type would be a type where corresponding values are limited to one of the three base colors: red, green, and blue.
-Types where the number of possible values is finite can be defined as Enum Types in Java.</description>
+      <description>Algebraic Datatypes #  Algebraic datatypes are a combination of sum types and product types which we discuss next.
+Sum types #  Sum types are used to represent different variants of values. They are also called variant types or tagged union types. A simple example of a sum type would be a type where corresponding values are limited to one of the three base colors: red, green, and blue.</description>
     </item>
     
     <item>
@@ -23,9 +22,9 @@ Types where the number of possible values is finite can be defined as Enum Types
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/background/patterns/</guid>
-      <description>Pattern Matching # Pattern matching provides a way to inspect algebraic datatypes and access the components of their variants.
-Branching on enum types # The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
-asHexString(RED) -&amp;gt; &amp;#34;#ff0000&amp;#34; asHexString(GREEN) -&amp;gt; &amp;#34;#00ff00&amp;#34; asHexString(BLUE) -&amp;gt; &amp;#34;#0000ff&amp;#34; BaseColor was defined as an enum type, so we can use a switch statement to implement an asHexString method.</description>
+      <description>Pattern Matching #  Pattern matching provides a way to inspect algebraic datatypes and access the components of their variants.
+Branching on enum types #  The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
+asHexString(RED) -&amp;gt; &amp;quot;#ff0000&amp;quot; asHexString(GREEN) -&amp;gt; &amp;quot;#00ff00&amp;quot; asHexString(BLUE) -&amp;gt; &amp;quot;#0000ff&amp;quot; BaseColor was defined as an enum type, so we can use a switch statement to implement an asHexString method.</description>
     </item>
     
   </channel>

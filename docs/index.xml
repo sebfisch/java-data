@@ -12,9 +12,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/background/data/</guid>
-      <description>Algebraic Datatypes # Algebraic datatypes are a combination of sum types and product types which we discuss next.
-Sum types # Sum types are used to represent different variants of values. They are also called variant types or tagged union types. A simple example of a sum type would be a type where corresponding values are limited to one of the three base colors: red, green, and blue.
-Types where the number of possible values is finite can be defined as Enum Types in Java.</description>
+      <description>Algebraic Datatypes #  Algebraic datatypes are a combination of sum types and product types which we discuss next.
+Sum types #  Sum types are used to represent different variants of values. They are also called variant types or tagged union types. A simple example of a sum type would be a type where corresponding values are limited to one of the three base colors: red, green, and blue.</description>
     </item>
     
     <item>
@@ -23,9 +22,9 @@ Types where the number of possible values is finite can be defined as Enum Types
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/background/patterns/</guid>
-      <description>Pattern Matching # Pattern matching provides a way to inspect algebraic datatypes and access the components of their variants.
-Branching on enum types # The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
-asHexString(RED) -&amp;gt; &amp;#34;#ff0000&amp;#34; asHexString(GREEN) -&amp;gt; &amp;#34;#00ff00&amp;#34; asHexString(BLUE) -&amp;gt; &amp;#34;#0000ff&amp;#34; BaseColor was defined as an enum type, so we can use a switch statement to implement an asHexString method.</description>
+      <description>Pattern Matching #  Pattern matching provides a way to inspect algebraic datatypes and access the components of their variants.
+Branching on enum types #  The following pseudo code describes the behavior of a function asHexString which computes a hexadecimal representation of a BaseColor value.
+asHexString(RED) -&amp;gt; &amp;quot;#ff0000&amp;quot; asHexString(GREEN) -&amp;gt; &amp;quot;#00ff00&amp;quot; asHexString(BLUE) -&amp;gt; &amp;quot;#0000ff&amp;quot; BaseColor was defined as an enum type, so we can use a switch statement to implement an asHexString method.</description>
     </item>
     
     <item>
@@ -34,7 +33,7 @@ asHexString(RED) -&amp;gt; &amp;#34;#ff0000&amp;#34; asHexString(GREEN) -&amp;gt
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/sealed/</guid>
-      <description>Sealed Classes # Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
+      <description>Sealed Classes #  Sealed Classes are motivated by the desire to define sum types where the class hierarchy is fixed and not intended to be extended by others. Using the new keywords1 sealed and permits classes (and interfaces) can restrict which other classes can extend (or implement) them.
 Sealed classes provide a middle ground between normal classes, which can be extended without restrictions, and final classes, which cannot be extended at all.</description>
     </item>
     
@@ -44,7 +43,7 @@ Sealed classes provide a middle ground between normal classes, which can be exte
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/records/</guid>
-      <description>Records # Records are motivated by the desire to implement product types more consisely than is otherwise possible. They are equivalent to final classes without an extends clause (their direct super-class is always Record) and where all fields are private and final. Record definitions automatically provide canonical constructors, field declarations, and corresponding methods for read access. They also provide sensible implementations for the equals, hashCode, and toString methods.
+      <description>Records #  Records are motivated by the desire to implement product types more consisely than is otherwise possible. They are equivalent to final classes without an extends clause (their direct super-class is always Record) and where all fields are private and final. Record definitions automatically provide canonical constructors, field declarations, and corresponding methods for read access. They also provide sensible implementations for the equals, hashCode, and toString methods.
 Another feature introduced together with records are local definitions for records, enums or interfaces, which we discuss below.</description>
     </item>
     
@@ -54,8 +53,8 @@ Another feature introduced together with records are local definitions for recor
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/instanceof/</guid>
-      <description>Pattern Matching for instanceof # Pattern Matching for instanceof helps to avoid type casts when we know that they succeed.
-Matching optional values # For example, we can use this feature to simplify the definition of map for optional values.
+      <description>Pattern Matching for instanceof #  Pattern Matching for instanceof helps to avoid type casts when we know that they succeed.
+Matching optional values #  For example, we can use this feature to simplify the definition of map for optional values.
 default &amp;lt;U&amp;gt; Optional&amp;lt;U&amp;gt; map(Function&amp;lt;T, U&amp;gt; fun) { if (this instanceof Present&amp;lt;T&amp;gt; self) { return new Present&amp;lt;&amp;gt;(fun.apply(self.value)); } return new Empty&amp;lt;&amp;gt;(); } Here, the condition using instanceof introduces a variable self of type Optional.</description>
     </item>
     
@@ -65,8 +64,8 @@ default &amp;lt;U&amp;gt; Optional&amp;lt;U&amp;gt; map(Function&amp;lt;T, U&amp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/switch/</guid>
-      <description>Switch Expressions # Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
-Switch expressions are introduced together with arrow labels, which is an independent feature for alternativ control flow. Unlike the traditional fall-through behavior, switch constructs with arrow labels execute only one of their cases.</description>
+      <description>Switch Expressions #  Switch Expressions expand the ways switch can be used in Java. It is now possible to use the switch construct as an expression (that has a value) instead of using it as a statement (that has an effect.)
+Switch expressions are introduced together with arrow labels, which is an independent feature for alternative control flow. Unlike the traditional fall-through behavior, switch constructs with arrow labels execute only one of their cases.</description>
     </item>
     
     <item>
@@ -75,9 +74,9 @@ Switch expressions are introduced together with arrow labels, which is an indepe
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/switchpatterns/</guid>
-      <description>Pattern Matching for switch # Pattern matching for switch significantly expands the types of values that can be inspected in a switch construct and the ways in which they can be inspected. It is available in Java 17 as a preview feature, and has to be enabled explicitly using a command-line parameter. The source code for this tutorial is configured accordingly.
+      <description>Pattern Matching for switch #  Pattern matching for switch significantly expands the types of values that can be inspected in a switch construct and the ways in which they can be inspected.
 Traditionally, switch statements can only inspect
-primitive integral numbers, their boxed versions, strings, or enum values, and inspecting null always leads to a NullPointerException.</description>
+ primitive integral numbers, their boxed versions, strings, or enum values,  and inspecting null always leads to a NullPointerException. Now, arbitrary reference types can be inspected using type patterns and null checks can be incorporated into switch constructs.</description>
     </item>
     
     <item>
@@ -86,19 +85,9 @@ primitive integral numbers, their boxed versions, strings, or enum values, and i
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://sebfisch.github.io/java-data/docs/features/recordpatterns/</guid>
-      <description>Record Patterns # Record Patterns are not available in Java 17, but are expected to be provided in some later version. We briefly mention them anyway because they represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
-With appropriate definitions for three-argument functions min and max, we could1 implement a saturation method for RGBColor values as follows.
-public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) &amp;amp;&amp;amp; max(r,g,b) == 0 -&amp;gt; 0; case RGBColor(var r, var g, var b) -&amp;gt; (max(r,g,b) - min(r,g,b)) / max(r,g,b); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.</description>
-    </item>
-    
-    <item>
-      <title>Text Blocks</title>
-      <link>http://sebfisch.github.io/java-data/docs/features/textblocks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://sebfisch.github.io/java-data/docs/features/textblocks/</guid>
-      <description>Text Blocks # Text Blocks provide a new way to write string literals in Java. They have nothing to do with algebraic datatypes or pattern matching, but we mention them anyway to complete our tour of new language features in Java 17 introduced by Project Amber since the previous LTS release.
-Here is a definition from my solution to the Advent of Code task that uses a text block for the example input.</description>
+      <description>Record Patterns #  Record Patterns represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
+With appropriate definitions for three-argument functions min and max, we can implement a saturation method for RGBColor values as follows.
+public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) when max(r, g, b) == 0 -&amp;gt; 0; case RGBColor(var r, var g, var b) -&amp;gt; (max(r, g, b) - min(r, g, b)) / max(r, g, b); default -&amp;gt; throw new IllegalStateException(&amp;#34;unreachable&amp;#34;); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.</description>
     </item>
     
   </channel>

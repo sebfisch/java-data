@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Record Patterns # Record Patterns are not available in Java 17, but are expected to be provided in some later version. We briefly mention them anyway because they represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
-With appropriate definitions for three-argument functions min and max, we could1 implement a saturation method for RGBColor values as follows.
-public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) &amp;&amp; max(r,g,b) == 0 -&gt; 0; case RGBColor(var r, var g, var b) -&gt; (max(r,g,b) - min(r,g,b)) / max(r,g,b); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.">
+<meta name="description" content="Record Patterns #  Record Patterns represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
+With appropriate definitions for three-argument functions min and max, we can implement a saturation method for RGBColor values as follows.
+public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) when max(r, g, b) == 0 -&gt; 0; case RGBColor(var r, var g, var b) -&gt; (max(r, g, b) - min(r, g, b)) / max(r, g, b); default -&gt; throw new IllegalStateException(&#34;unreachable&#34;); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Record Patterns" />
-<meta property="og:description" content="Record Patterns # Record Patterns are not available in Java 17, but are expected to be provided in some later version. We briefly mention them anyway because they represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
-With appropriate definitions for three-argument functions min and max, we could1 implement a saturation method for RGBColor values as follows.
-public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) &amp;&amp; max(r,g,b) == 0 -&gt; 0; case RGBColor(var r, var g, var b) -&gt; (max(r,g,b) - min(r,g,b)) / max(r,g,b); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value." />
+<meta property="og:description" content="Record Patterns #  Record Patterns represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
+With appropriate definitions for three-argument functions min and max, we can implement a saturation method for RGBColor values as follows.
+public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) when max(r, g, b) == 0 -&gt; 0; case RGBColor(var r, var g, var b) -&gt; (max(r, g, b) - min(r, g, b)) / max(r, g, b); default -&gt; throw new IllegalStateException(&#34;unreachable&#34;); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://sebfisch.github.io/java-data/docs/features/recordpatterns/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2022-01-10T12:18:30+01:00" />
+<meta property="article:modified_time" content="2023-09-29T11:23:43+00:00" />
+
 <title>Record Patterns | Java Data</title>
 <link rel="manifest" href="/java-data/manifest.json">
 <link rel="icon" href="/java-data/favicon.png" type="image/x-icon">
@@ -191,19 +192,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="http://sebfisch.github.io/java-data/docs/features/textblocks/" class="">Text Blocks</a>
-  
-
-        </li>
-      
-    
   </ul>
 
         </li>
@@ -266,7 +254,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -310,32 +298,47 @@ https://github.com/alex-shpak/hugo-book
   Record Patterns
   <a class="anchor" href="#record-patterns">#</a>
 </h1>
-<p><a href="https://openjdk.java.net/jeps/405">Record Patterns</a>
-are not available in Java 17,
-but are expected to be provided in some later version.
-We briefly mention them anyway
-because they represent an important aspect of pattern matching
+<p><a href="https://openjdk.org/jeps/440">Record Patterns</a>
+represent an important aspect of pattern matching
 discussed in the background section:
 <a href="../../background/patterns/#deconstructing-product-types">deconstructing product types</a>.</p>
 <p>With appropriate definitions for three-argument functions <code>min</code> and <code>max</code>,
-we could<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> implement a <code>saturation</code> method for <code>RGBColor</code> values as follows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">saturation</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> RGBColor<span style="color:#f92672">(</span>var r<span style="color:#f92672">,</span> var g<span style="color:#f92672">,</span> var b<span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> 0
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span> 0<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> RGBColor<span style="color:#f92672">(</span>var r<span style="color:#f92672">,</span> var g<span style="color:#f92672">,</span> var b<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">(</span>max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">)</span> <span style="color:#f92672">-</span> min<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">))</span> <span style="color:#f92672">/</span> max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span>g<span style="color:#f92672">,</span>b<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">};</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>In this definition, <code>RGBColor(var r, var g, var b)</code> is a record pattern
+we can implement a <code>saturation</code> method for <code>RGBColor</code> values as follows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">saturation</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> RGBColor<span style="color:#f92672">(</span>var r<span style="color:#f92672">,</span> var g<span style="color:#f92672">,</span> var b<span style="color:#f92672">)</span> when <span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>r<span style="color:#f92672">,</span> g<span style="color:#f92672">,</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">==</span> 0 <span style="color:#f92672">-&gt;</span> 0<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">case</span> RGBColor<span style="color:#f92672">(</span>var r<span style="color:#f92672">,</span> var g<span style="color:#f92672">,</span> var b<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">(</span>max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span> g<span style="color:#f92672">,</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">-</span> min<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span> g<span style="color:#f92672">,</span> b<span style="color:#f92672">))</span> <span style="color:#f92672">/</span> max<span style="color:#f92672">(</span>r<span style="color:#f92672">,</span> g<span style="color:#f92672">,</span> b<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">default</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unreachable&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">};</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>In this definition, <code>RGBColor(var r, var g, var b)</code> is a record pattern
 introducing pattern variables <code>r</code>, <code>g</code>, and <code>b</code>
 which are bound to the values of the corresponding record fields
 <code>red</code>, <code>green</code>, and <code>blue</code> of the matched <code>RGBColor</code> value.</p>
+<p>We include an unreachable default branch to satisfy the compiler.</p>
 <p>The ability to deconstruct records directly inside a pattern
-would also be useful to simplify the definitions
+is also useful to simplify the definitions
 of our default methods for optional values and recursive lists
-because we would not have to introduce the variable <code>self</code>.</p>
-<p>Record patterns will be applicable in <code>switch</code> constructs
+because we do not have to introduce the variable <code>self</code>.</p>
+<p>Here are adjusted definitions of <code>map</code> and <code>filter</code> for our <code>Optional</code> type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">default</span> <span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> U<span style="color:#f92672">&gt;</span> fun<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> Empty<span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+        <span style="color:#66d9ef">case</span> Present<span style="color:#f92672">(</span>var value<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> Present<span style="color:#f92672">&lt;&gt;(</span>fun<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>value<span style="color:#f92672">));</span>
+    <span style="color:#f92672">};</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> pred<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">case</span> Empty<span style="color:#f92672">()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">case</span> Present<span style="color:#f92672">(</span>var value<span style="color:#f92672">)</span> when pred<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>value<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">case</span> Present<span style="color:#f92672">(</span>var value<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> Empty<span style="color:#f92672">&lt;&gt;();</span>
+    <span style="color:#f92672">};</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>You can rewrite your solution to
+<a href="../switchpatterns/#task-5-refactor-recursive-lists">Task 5: refactor recursive lists</a>
+to use record patterns as well.</p>
+<p>Record patterns are available in <code>switch</code> constructs
 as well as <code>instanceof</code> checks.
 In more complex scenarios they can be nested
 to deconstruct deeply nested values.
@@ -343,19 +346,6 @@ In the example above,
 the nested patterns are expressed using
 <a href="https://openjdk.java.net/jeps/286">Local-Variable Type Inference</a>
 without mentioning corresponding types explicitly.</p>
-<p>In addition to record patterns, array patterns will be introduced
-to provide the ability to deconstruct arrays.</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>We may have to change the types of the fields to integral values
-because floats and doubles cannot yet be inspected in <code>switch</code> constructs.
-However, allowing floats and doubles is planned as future work
-and might be available when record patterns are released.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
 </article>
  
       
@@ -372,7 +362,7 @@ and might be available when record patterns are released.&#160;<a href="#fnref:1
 
 
 
-  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
 
 
  
