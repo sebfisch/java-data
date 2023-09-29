@@ -4,7 +4,7 @@ title = "Java Data"
 publishDir = "docs"
 theme = "hugo-book"
 enableGitInfo = true
-disableKinds = ['taxonomy']
+disableKinds = ['taxonomy', 'term']
 
 [params]
   BookSearch = false
