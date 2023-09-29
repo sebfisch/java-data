@@ -5,13 +5,10 @@ weight: 25
 
 # Pattern Matching for `switch`
 
-[Pattern matching for `switch`](https://openjdk.java.net/jeps/406)
+[Pattern matching for `switch`](https://openjdk.org/jeps/441)
 significantly expands the types of values
 that can be inspected in a `switch` construct
 and the ways in which they can be inspected.
-It is available in Java 17 as a preview feature,
-and has to be enabled explicitly using a command-line parameter.
-The source code for this tutorial is configured accordingly.
 
 Traditionally,
 `switch` statements can only inspect 
@@ -68,7 +65,7 @@ Here is an improved implementation of the `filter` function for optional values.
 default Optional<T> filter(Predicate<T> pred) {
     return switch (this) {
         case Empty<T> self -> self;
-        case Present<T> self && pred.test(self.value) -> self;
+        case Present<T> self when pred.test(self.value) -> self;
         case Present<T> self -> new Empty<>();
     };
 }
@@ -79,7 +76,7 @@ Just like with `map`, we benefit from an exhaustiveness check by the compiler.
 Note that there are two cases for present values.
 The first one uses a guarded pattern,
 which combines a pattern with a boolean expression.
-The condition is only evaluated if the pattern to the left of `&&` matches.
+The condition is only evaluated if the pattern to the left of the keyword `when` matches.
 Consequently, the pattern variable `self` is in scope in the condition
 as well as in the right hand side of the `case` branch.
 The pattern in the second `case` branch for present values is not guarded.
@@ -153,26 +150,22 @@ With this definition the call `describe(null)` returns `"other"`.
 Here is an alternative implementation with the same behavior.
 
 ```java
-public static String describe(RGBColor color) {
+  public static String describeWithTotalBranch(RGBColor color) {
     return switch (color) {
-        case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
-        case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
-        case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
-        case RGBColor c -> "other";
+      case RGBColor c when c.red > c.green && c.red > c.blue -> "reddish";
+      case RGBColor c when c.green > c.red && c.green > c.blue -> "greenish";
+      case RGBColor c when c.blue > c.red && c.blue > c.green -> "blueish";
+      case RGBColor c -> "other";
+      case null -> "other";
     };
-}
+  }
 ```
 
 The result of the call `describe(null)` is `"other"`,
-like with the previous definition using an explicit `null` pattern.
+like with the previous definition.
 
-While type patterns do not always match the `null` value, in this case,
-the final type pattern does match `null`.
-This is because total type patterns
-(which match the type of the inspected value)
-are expected to always match and, therefore, also match `null`.
-Note that the type pattern in the guarded patterns do not match `null`.
-If they did, we would get an exception when evaluating the condition.
+Note that the total type pattern in the end does not match the `null` value,
+so we add an additional case using the `null` pattern.
 
 ## Task 6: refactor AoC solution
 

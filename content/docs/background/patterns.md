@@ -198,4 +198,4 @@ Again, this implementation is cumbersome because of a required type cast
 and because the compiler cannot detect that we have handled all cases.
 
 This concludes the background section.
-We are now ready to discuss [New Features](../../features) in Java 17.
+We are now ready to discuss [New Features](../../features) in Java.

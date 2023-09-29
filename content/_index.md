@@ -48,16 +48,17 @@ and the functions operating on data are usually defined using pattern matching.
 Over the years, Java has incorporated
 [language features from functional programming](https://sebfisch.github.io/java-fun/)
 that have changed how Java programmers write their code.
-The long-term support (LTS) release of
-[JDK Version 17](https://openjdk.java.net/projects/jdk/17/)
-includes new language features from
+Recent versions of Java
+include new language features from
 [Project Amber](https://openjdk.java.net/projects/amber/)
 inspired by algebraic datatypes and pattern matching 
 that change the way data can be defined and used in Java.
 This tutorial provides an overview and an in-depth exploration 
-of related features that have been included since the previous LTS release.
+of related features that have been included
+in [JDK Version 17](https://openjdk.java.net/projects/jdk/17/)
+and [JDK Version 21](https://openjdk.java.net/projects/jdk/21/)
 
-Before we look at specific new features in Java 17,
+Before we look at specifics,
 we discuss the underlying concepts algebraic datatypes and pattern matching
 as a [background](docs/background)
 to understand the motivation behind the new features.

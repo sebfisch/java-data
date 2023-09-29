@@ -12,7 +12,7 @@ It is now possible to use the `switch` construct as an expression
 instead of using it as a statement (that has an effect.)
 
 Switch expressions are introduced together with arrow labels,
-which is an independent feature for alternativ control flow.
+which is an independent feature for alternative control flow.
 Unlike the traditional fall-through behavior,
 `switch` constructs with arrow labels execute only one of their cases.
 

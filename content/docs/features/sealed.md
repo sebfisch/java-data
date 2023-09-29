@@ -19,7 +19,7 @@ but we won't go into the details of this distinction.
 Sealed classes provide a middle ground between normal classes,
 which can be extended without restrictions,
 and final classes, which cannot be extended at all.
-They provide a basis for ehaustiveness checking during
+They provide a basis for exhaustiveness checking during
 [pattern matching for `switch`](../switchpatterns)
 which helps to avoid unreachable branches
 and to ensure that all possible branches are defined.

@@ -102,7 +102,7 @@ We could define records as nested classes and use them like other nested classes
 But records (as well as enums and interfaces) can now also be defined locally
 inside a method.
 When we define records like this, 
-their definition is closer to where they are used,
+their definition is closer to where it is used,
 and it is not visible outside the method that contains it,
 so it does not clutter the namespace.
 

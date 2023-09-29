@@ -158,7 +158,7 @@ For brevity, we omit `equals`, `hashCode`, and `toString` methods
 in the nested classes.
 
 We have seen that it is possible to define algebraic datatypes in Java
-without using any of the features introduced with Java 17.
+without using any new features.
 However, the shown definitions have drawbacks that we will discuss later
 and they are quite verbose 
 even if we omit advisable definitions for `equals`, `hashCode`, and `toString`.
