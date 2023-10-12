@@ -18,7 +18,6 @@ public double saturation() {
     return switch (this) {
         case RGBColor(var r, var g, var b) when max(r, g, b) == 0 -> 0;
         case RGBColor(var r, var g, var b) -> (max(r, g, b) - min(r, g, b)) / max(r, g, b);
-        default -> throw new IllegalStateException("unreachable");
     };
 }
 ```
@@ -27,8 +26,6 @@ In this definition, `RGBColor(var r, var g, var b)` is a record pattern
 introducing pattern variables `r`, `g`, and `b`
 which are bound to the values of the corresponding record fields
 `red`, `green`, and `blue` of the matched `RGBColor` value.
-
-We include an unreachable default branch to satisfy the compiler.
 
 The ability to deconstruct records directly inside a pattern
 is also useful to simplify the definitions

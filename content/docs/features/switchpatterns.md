@@ -118,9 +118,9 @@ As an example, consider the following function on `RGBColor` values.
 ```java
 public static String describe(RGBColor color) {
     return switch (color) {
-        case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
-        case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
-        case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
+        case RGBColor c when c.red > c.green && c.red > c.blue -> "reddish";
+        case RGBColor c when c.green > c.red && c.green > c.blue -> "greenish";
+        case RGBColor c when c.blue > c.red && c.blue > c.green -> "blueish";
         default -> "other";
     };
 }
@@ -136,9 +136,9 @@ Here is an alternative definition that handles `null` values.
 ```java
 public static String describe(RGBColor color) {
     return switch (color) {
-        case RGBColor c && c.red > c.green && c.red > c.blue -> "reddish";
-        case RGBColor c && c.green > c.red && c.green > c.blue -> "greenish";
-        case RGBColor c && c.blue > c.red && c.blue > c.green -> "blueish";
+        case RGBColor c when c.red > c.green && c.red > c.blue -> "reddish";
+        case RGBColor c when c.green > c.red && c.green > c.blue -> "greenish";
+        case RGBColor c when c.blue > c.red && c.blue > c.green -> "blueish";
         case null, default -> "other";
     };
 }

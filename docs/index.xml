@@ -87,7 +87,7 @@ Traditionally, switch statements can only inspect
       <guid>http://sebfisch.github.io/java-data/docs/features/recordpatterns/</guid>
       <description>Record Patterns #  Record Patterns represent an important aspect of pattern matching discussed in the background section: deconstructing product types.
 With appropriate definitions for three-argument functions min and max, we can implement a saturation method for RGBColor values as follows.
-public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) when max(r, g, b) == 0 -&amp;gt; 0; case RGBColor(var r, var g, var b) -&amp;gt; (max(r, g, b) - min(r, g, b)) / max(r, g, b); default -&amp;gt; throw new IllegalStateException(&amp;#34;unreachable&amp;#34;); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.</description>
+public double saturation() { return switch (this) { case RGBColor(var r, var g, var b) when max(r, g, b) == 0 -&amp;gt; 0; case RGBColor(var r, var g, var b) -&amp;gt; (max(r, g, b) - min(r, g, b)) / max(r, g, b); }; } In this definition, RGBColor(var r, var g, var b) is a record pattern introducing pattern variables r, g, and b which are bound to the values of the corresponding record fields red, green, and blue of the matched RGBColor value.</description>
     </item>
     
   </channel>

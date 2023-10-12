@@ -29,7 +29,7 @@ in order to make them more reusable and easier to test.
 In object-oriented languages,
 the result of methods is not only determined by its arguments
 but, possibly, also by the local state of the object they are called on.
-Even if the method is immutable,
+Even if the method is not mutating,
 its result may be influenced by local state
 (the implicit environment mentioned above)
 that is not visible from the outside,
